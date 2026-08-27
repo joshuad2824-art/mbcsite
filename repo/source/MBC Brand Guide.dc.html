@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="crossorigin" />
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..600&family=Lato:ital,wght@0,300;0,400;0,700;0,900;1,400&display=swap" rel="stylesheet" />
+<style>
+  *, *::before, *::after { box-sizing: border-box; }
+  body { margin: 0; background: #F8F3EB; -webkit-font-smoothing: antialiased; }
+  a { color: #A8613F; text-decoration: none; }
+  a:hover { color: #8A4C2E; }
+</style>
+</helmet>
+<div style="background:#F8F3EB;color:#3A322B;min-height:100vh">
+  <template id="__bundler_thumbnail"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect width="100" height="100" fill="#F8F3EB"/><g fill="none" stroke="#A8613F" stroke-width="3" stroke-linecap="round"><path d="M50 30v40M40 44h20"/><path d="M32 70V52l18-14 18 14v18"/></g></svg></template>
+
+  <section data-screen-label="Cover" style="max-width:1180px;margin:0 auto;padding:clamp(56px,7vw,120px) clamp(20px,5vw,64px) clamp(48px,5vw,88px);border-bottom:1px solid #E4D8C4">
+    <img src="assets/mbc-primary-lockup.png" alt="Memorial Baptist Church" style="width:clamp(180px,20vw,240px);height:auto;display:block;margin-bottom:clamp(40px,5vw,72px)" />
+    <p style="font:700 11px/1 Lato,sans-serif;letter-spacing:.22em;text-transform:uppercase;color:#A8613F;margin:0 0 26px">Brand &amp; Style Guide · Version 1.0 · August 2026</p>
+    <h1 style="font:400 clamp(40px,5.6vw,84px)/1.02 Lora,Georgia,serif;letter-spacing:-.028em;margin:0;max-width:20ch;text-wrap:balance">A steeple, a cross, and two lamps on Yale Avenue.</h1>
+    <p style="font:300 20px/1.62 Lato,sans-serif;color:#6B6058;margin:30px 0 0;max-width:58ch;text-wrap:pretty">This guide covers the four things that keep Memorial looking like Memorial: the color system, the type scale, printed collateral, and social templates. Everything here is derived from the existing mark — nothing was invented for novelty's sake.</p>
+    <div style="display:flex;flex-wrap:wrap;gap:0;margin-top:clamp(40px,5vw,72px);border-top:1px solid #E4D8C4">
+      <sc-for list="{{ contents }}" as="c" hint-placeholder-count="4">
+        <div style="flex:1 1 200px;padding:24px 24px 24px 0;border-bottom:1px solid #E4D8C4">
+          <p style="font:400 20px/1 Lora,Georgia,serif;color:#A8613F;margin:0 0 10px">{{ c.num }}</p>
+          <p style="font:600 17px/1.3 Lora,Georgia,serif;margin:0 0 6px">{{ c.title }}</p>
+          <p style="font:400 14px/1.5 Lato,sans-serif;color:#8A7C6C;margin:0">{{ c.note }}</p>
+        </div>
+      </sc-for>
+    </div>
+  </section>
+
+  <section data-screen-label="Color" style="max-width:1180px;margin:0 auto;padding:clamp(56px,6vw,100px) clamp(20px,5vw,64px);border-bottom:1px solid #E4D8C4">
+    <p style="font:700 11px/1 Lato,sans-serif;letter-spacing:.22em;text-transform:uppercase;color:#A8613F;margin:0 0 22px">01 — Color</p>
+    <h2 style="font:400 clamp(30px,3.6vw,50px)/1.08 Lora,Georgia,serif;letter-spacing:-.022em;margin:0;max-width:24ch">One brown, one warm ground, and two accents that stay in their lane.</h2>
+    <p style="font:400 18px/1.65 Lato,sans-serif;color:#6B6058;margin:24px 0 0;max-width:62ch;text-wrap:pretty">Steeple Brown is the ownable color — it comes straight out of the logo and does most of the work. Lamplight is the only color allowed on a button or a link. Yale Sage labels and categorizes; it never becomes a background for large areas. Brass is for small marks on dark grounds only.</p>
+
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:20px;margin-top:52px">
+      <sc-for list="{{ colors }}" as="c" hint-placeholder-count="6">
+        <div style="border:1px solid #E4D8C4;border-radius:16px;overflow:hidden;background:#FFFDF9">
+          <div style="height:150px;background:{{ c.hex }};border-bottom:1px solid #E4D8C4"></div>
+          <div style="padding:22px">
+            <p style="font:600 19px/1.2 Lora,Georgia,serif;margin:0 0 4px">{{ c.name }}</p>
+            <p style="font:400 13px/1.5 Lato,sans-serif;color:#8A7C6C;margin:0 0 16px">{{ c.role }}</p>
+            <div style="display:grid;gap:6px">
+              <sc-for list="{{ c.specs }}" as="s" hint-placeholder-count="4">
+                <p style="font:400 12px/1.4 ui-monospace,SFMono-Regular,Menlo,monospace;color:#6B6058;margin:0;display:flex;justify-content:space-between;gap:12px"><span style="color:#A2937F">{{ s.k }}</span><span>{{ s.v }}</span></p>
+              </sc-for>
+            </div>
+          </div>
+        </div>
+      </sc-for>
+    </div>
+
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px;margin-top:20px">
+      <div style="background:#FFFDF9;border:1px solid #E4D8C4;border-radius:16px;padding:28px">
+        <p style="font:700 10px/1 Lato,sans-serif;letter-spacing:.18em;text-transform:uppercase;color:#4F7A5A;margin:0 0 18px">Proportion</p>
+        <div style="display:flex;height:44px;border-radius:8px;overflow:hidden;border:1px solid #E4D8C4">
+          <div style="flex:62;background:#F8F3EB"></div>
+          <div style="flex:24;background:#3A322B"></div>
+          <div style="flex:9;background:#A8613F"></div>
+          <div style="flex:5;background:#4F7A5A"></div>
+        </div>
+        <p style="font:400 14px/1.6 Lato,sans-serif;color:#6B6058;margin:16px 0 0">Roughly 62 / 24 / 9 / 5 — cream, brown, lamplight, sage. If a layout feels loud, the accents have crept past 15% together.</p>
+      </div>
+      <div style="background:#FFFDF9;border:1px solid #E4D8C4;border-radius:16px;padding:28px">
+        <p style="font:700 10px/1 Lato,sans-serif;letter-spacing:.18em;text-transform:uppercase;color:#4F7A5A;margin:0 0 18px">Contrast (WCAG AA)</p>
+        <div style="display:grid;gap:8px">
+          <sc-for list="{{ contrast }}" as="x" hint-placeholder-count="4">
+            <p style="font:400 14px/1.5 Lato,sans-serif;color:#6B6058;margin:0;display:flex;justify-content:space-between;gap:12px;padding-bottom:8px;border-bottom:1px solid #F0E7D8"><span>{{ x.pair }}</span><span style="font-family:ui-monospace,Menlo,monospace;font-size:13px;color:#3A322B">{{ x.ratio }}</span></p>
+          </sc-for>
+        </div>
+      </div>
+      <div style="background:#FFFDF9;border:1px solid #E4D8C4;border-radius:16px;padding:28px">
+        <p style="font:700 10px/1 Lato,sans-serif;letter-spacing:.18em;text-transform:uppercase;color:#4F7A5A;margin:0 0 18px">Never do this</p>
+        <div style="display:grid;gap:11px">
+          <sc-for list="{{ colorDonts }}" as="d" hint-placeholder-count="4">
+            <p style="font:400 14px/1.55 Lato,sans-serif;color:#6B6058;margin:0;padding-left:16px;position:relative"><span style="position:absolute;left:0;top:0;color:#A8613F">·</span>{{ d }}</p>
+          </sc-for>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section data-screen-label="Type" style="max-width:1180px;margin:0 auto;padding:clamp(56px,6vw,100px) clamp(20px,5vw,64px);border-bottom:1px solid #E4D8C4">
+    <p style="font:700 11px/1 Lato,sans-serif;letter-spacing:.22em;text-transform:uppercase;color:#A8613F;margin:0 0 22px">02 — Typography</p>
+    <h2 style="font:400 clamp(30px,3.6vw,50px)/1.08 Lora,Georgia,serif;letter-spacing:-.022em;margin:0;max-width:26ch">Lora for what we say. Lato for how we say it.</h2>
+    <p style="font:400 18px/1.65 Lato,sans-serif;color:#6B6058;margin:24px 0 0;max-width:62ch;text-wrap:pretty">The pairing contrasts on classification and harmonizes on warmth and x-height. Lora is a transitional serif with the bracketed serifs and ball terminals already in the wordmark — it is the closest available match to the logotype. Lato is a humanist sans, the most comfortable family for long reading, forms, and small print, which matters in a congregation with a lot of readers over sixty. Both are open-licensed and free for print and web.</p>
+
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:20px;margin-top:52px">
+      <div style="background:#FFFDF9;border:1px solid #E4D8C4;border-radius:16px;padding:clamp(26px,3vw,40px)">
+        <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:24px">
+          <p style="font:600 22px/1 Lora,Georgia,serif;margin:0">Lora</p>
+          <p style="font:700 10px/1 Lato,sans-serif;letter-spacing:.16em;text-transform:uppercase;color:#4F7A5A;margin:0">Headlines · Scripture</p>
+        </div>
+        <p style="font:400 62px/1 Lora,Georgia,serif;letter-spacing:-.02em;margin:0 0 18px">Aa Bb Gg</p>
+        <p style="font:400 15px/1.6 Lato,sans-serif;color:#6B6058;margin:0 0 20px">ABCDEFGHIJKLMNOPQRSTUVWXYZ<br />abcdefghijklmnopqrstuvwxyz 0123456789</p>
+        <p style="font:400 italic 21px/1.5 Lora,Georgia,serif;color:#4A4139;margin:0;padding-top:20px;border-top:1px solid #F0E7D8">“Take my yoke upon you and learn from me, for I am gentle and humble in heart.”</p>
+        <p style="font:400 12px/1.5 ui-monospace,Menlo,monospace;color:#A2937F;margin:18px 0 0">Weights in use: 400, 600, 700 · italic 400</p>
+      </div>
+      <div style="background:#FFFDF9;border:1px solid #E4D8C4;border-radius:16px;padding:clamp(26px,3vw,40px)">
+        <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:24px">
+          <p style="font:700 22px/1 Lato,sans-serif;margin:0">Lato</p>
+          <p style="font:700 10px/1 Lato,sans-serif;letter-spacing:.16em;text-transform:uppercase;color:#4F7A5A;margin:0">Body · UI · Labels</p>
+        </div>
+        <p style="font:300 62px/1 Lato,sans-serif;letter-spacing:-.02em;margin:0 0 18px">Aa Bb Gg</p>
+        <p style="font:400 15px/1.6 Lato,sans-serif;color:#6B6058;margin:0 0 20px">ABCDEFGHIJKLMNOPQRSTUVWXYZ<br />abcdefghijklmnopqrstuvwxyz 0123456789</p>
+        <p style="font:400 17px/1.65 Lato,sans-serif;color:#4A4139;margin:0;padding-top:20px;border-top:1px solid #F0E7D8">Dinner is at seven in the fellowship hall. Bring a friend; no sign-up needed. Rides are available on request — call the office by Tuesday.</p>
+        <p style="font:400 12px/1.5 ui-monospace,Menlo,monospace;color:#A2937F;margin:18px 0 0">Weights in use: 300, 400, 700 · italic 400</p>
+      </div>
+    </div>
+
+    <h3 style="font:400 clamp(24px,2.4vw,32px)/1.15 Lora,Georgia,serif;letter-spacing:-.018em;margin:56px 0 8px">The scale</h3>
+    <p style="font:400 16px/1.6 Lato,sans-serif;color:#8A7C6C;margin:0 0 32px">16px base, major-third ratio (1.25) for interface steps, wider jumps for display. Every step is fixed with its own leading and tracking — do not eyeball intermediate sizes.</p>
+    <div style="background:#FFFDF9;border:1px solid #E4D8C4;border-radius:16px;overflow:hidden">
+      <sc-for list="{{ scale }}" as="s" hint-placeholder-count="9">
+        <div style="display:grid;grid-template-columns:minmax(0,110px) minmax(0,1fr) minmax(0,220px);gap:clamp(14px,3vw,36px);padding:22px clamp(20px,3vw,32px);border-bottom:1px solid #F0E7D8;align-items:baseline">
+          <p style="font:700 10px/1.4 Lato,sans-serif;letter-spacing:.14em;text-transform:uppercase;color:#A8613F;margin:0">{{ s.name }}</p>
+          <p style="margin:0;color:#3A322B;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font:{{ s.font }}">{{ s.sample }}</p>
+          <p style="font:400 12px/1.5 ui-monospace,Menlo,monospace;color:#8A7C6C;margin:0;text-align:right">{{ s.spec }}</p>
+        </div>
+      </sc-for>
+    </div>
+
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px;margin-top:20px">
+      <sc-for list="{{ typeRules }}" as="t" hint-placeholder-count="3">
+        <div style="background:#F1E9DB;border:1px solid #E4D8C4;border-radius:16px;padding:28px">
+          <p style="font:700 10px/1 Lato,sans-serif;letter-spacing:.18em;text-transform:uppercase;color:#4F7A5A;margin:0 0 16px">{{ t.head }}</p>
+          <div style="display:grid;gap:11px">
+            <sc-for list="{{ t.items }}" as="i" hint-placeholder-count="4">
+              <p style="font:400 14px/1.55 Lato,sans-serif;color:#5C5249;margin:0;padding-left:16px;position:relative"><span style="position:absolute;left:0;top:0;color:#A8613F">·</span>{{ i }}</p>
+            </sc-for>
+          </div>
+        </div>
+      </sc-for>
+    </div>
+  </section>
+
+  <section data-screen-label="Print" style="max-width:1180px;margin:0 auto;padding:clamp(56px,6vw,100px) clamp(20px,5vw,64px);border-bottom:1px solid #E4D8C4">
+    <p style="font:700 11px/1 Lato,sans-serif;letter-spacing:.22em;text-transform:uppercase;color:#A8613F;margin:0 0 22px">03 — Print collateral</p>
+    <h2 style="font:400 clamp(30px,3.6vw,50px)/1.08 Lora,Georgia,serif;letter-spacing:-.022em;margin:0;max-width:24ch">The bulletin is the brand most people actually hold.</h2>
+    <p style="font:400 18px/1.65 Lato,sans-serif;color:#6B6058;margin:24px 0 0;max-width:62ch;text-wrap:pretty">Printed on uncoated warm white stock, 70# text for the bulletin. The cream ground does not print — it is the paper. All print type is 12pt minimum, and 14pt for anything a senior adult reads in dim light.</p>
+
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:24px;margin-top:52px;align-items:start">
+      <div>
+        <p style="font:700 10px/1 Lato,sans-serif;letter-spacing:.18em;text-transform:uppercase;color:#8A7C6C;margin:0 0 16px">Sunday bulletin — cover · 5.5 × 8.5 in</p>
+        <div style="aspect-ratio:5.5/8.5;background:#FDFBF7;border:1px solid #E0D5C2;border-radius:4px;box-shadow:0 18px 40px -24px rgba(58,50,43,.35);padding:11% 10%;display:flex;flex-direction:column">
+          <img src="assets/mbc-mark.png" alt="" style="width:26%;height:auto;object-fit:contain;margin:0 auto 12%" />
+          <p style="font:700 8px/1 Lato,sans-serif;letter-spacing:.28em;text-transform:uppercase;color:#A8613F;margin:0 0 12px;text-align:center">The Lord's Day · September 6, 2026</p>
+          <p style="font:400 26px/1.1 Lora,Georgia,serif;letter-spacing:-.02em;margin:0 0 auto;text-align:center;color:#3A322B">The Son of Man<br />Came to Serve</p>
+          <p style="font:400 italic 12px/1.55 Lora,Georgia,serif;color:#6B6058;margin:0 0 14px;text-align:center">“For even the Son of Man came not to be served but to serve, and to give his life as a ransom for many.”</p>
+          <p style="font:700 8px/1 Lato,sans-serif;letter-spacing:.22em;text-transform:uppercase;color:#9A8B7B;margin:0;text-align:center;padding-top:12px;border-top:1px solid #E7DCC9">Mark 10:45 · 2800 S. Yale Ave.</p>
+        </div>
+      </div>
+      <div>
+        <p style="font:700 10px/1 Lato,sans-serif;letter-spacing:.18em;text-transform:uppercase;color:#8A7C6C;margin:0 0 16px">Bulletin — order of service</p>
+        <div style="aspect-ratio:5.5/8.5;background:#FDFBF7;border:1px solid #E0D5C2;border-radius:4px;box-shadow:0 18px 40px -24px rgba(58,50,43,.35);padding:10% 9%;display:flex;flex-direction:column">
+          <p style="font:700 8px/1 Lato,sans-serif;letter-spacing:.24em;text-transform:uppercase;color:#A8613F;margin:0 0 5%">Order of Worship</p>
+          <sc-for list="{{ order }}" as="o" hint-placeholder-count="8">
+            <div style="display:flex;justify-content:space-between;gap:10px;padding:4.5% 0;border-bottom:1px solid #F0E7D8">
+              <p style="font:400 11px/1.3 Lora,Georgia,serif;color:#3A322B;margin:0">{{ o.item }}</p>
+              <p style="font:400 9px/1.4 Lato,sans-serif;color:#9A8B7B;margin:0;text-align:right;flex:none">{{ o.who }}</p>
+            </div>
+          </sc-for>
+          <p style="font:400 9px/1.5 Lato,sans-serif;color:#8A7C6C;margin:auto 0 0;padding-top:6%">Wednesday: study 6:00, dinner 7:00. Member meeting Sept 28.</p>
+        </div>
+      </div>
+      <div style="display:grid;gap:24px">
+        <div>
+          <p style="font:700 10px/1 Lato,sans-serif;letter-spacing:.18em;text-transform:uppercase;color:#8A7C6C;margin:0 0 16px">Lobby / wayfinding sign</p>
+          <div style="aspect-ratio:3/2;background:#3A322B;border-radius:6px;padding:8% 7%;display:flex;flex-direction:column;justify-content:space-between;box-shadow:0 18px 40px -24px rgba(58,50,43,.4)">
+            <img src="assets/mbc-mark.png" alt="" style="width:13%;height:auto;object-fit:contain;filter:brightness(0) invert(1);opacity:.85" />
+            <div>
+              <p style="font:700 9px/1 Lato,sans-serif;letter-spacing:.24em;text-transform:uppercase;color:#DBAE84;margin:0 0 10px">This way</p>
+              <p style="font:400 clamp(20px,2.4vw,30px)/1.1 Lora,Georgia,serif;color:#F4EDE2;margin:0;letter-spacing:-.02em">Preschool &amp; Kids<br />Check-in</p>
+            </div>
+            <p style="font:400 11px/1 Lato,sans-serif;color:#B8A48C;margin:0">Hall B · Rooms 101–118</p>
+          </div>
+        </div>
+        <div>
+          <p style="font:700 10px/1 Lato,sans-serif;letter-spacing:.18em;text-transform:uppercase;color:#8A7C6C;margin:0 0 16px">Name tag · 3.5 × 2.25 in</p>
+          <div style="aspect-ratio:3.5/2.25;background:#FDFBF7;border:1px solid #E0D5C2;border-radius:6px;padding:6% 7%;display:flex;flex-direction:column;justify-content:space-between;box-shadow:0 12px 28px -20px rgba(58,50,43,.35)">
+            <p style="font:700 8px/1 Lato,sans-serif;letter-spacing:.24em;text-transform:uppercase;color:#A8613F;margin:0">Ask me anything</p>
+            <p style="font:400 clamp(22px,2.6vw,32px)/1 Lora,Georgia,serif;color:#3A322B;margin:0;letter-spacing:-.02em">Yonas</p>
+            <div style="display:flex;justify-content:space-between;align-items:flex-end">
+              <p style="font:700 8px/1 Lato,sans-serif;letter-spacing:.16em;text-transform:uppercase;color:#9A8B7B;margin:0">Church Host</p>
+              <img src="assets/mbc-mark.png" alt="" style="width:11%;height:auto;object-fit:contain;opacity:.5" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section data-screen-label="Social" style="max-width:1180px;margin:0 auto;padding:clamp(56px,6vw,100px) clamp(20px,5vw,64px)">
+    <p style="font:700 11px/1 Lato,sans-serif;letter-spacing:.22em;text-transform:uppercase;color:#A8613F;margin:0 0 22px">04 — Social templates</p>
+    <h2 style="font:400 clamp(30px,3.6vw,50px)/1.08 Lora,Georgia,serif;letter-spacing:-.022em;margin:0;max-width:26ch">Three templates, and no fourth one.</h2>
+    <p style="font:400 18px/1.65 Lato,sans-serif;color:#6B6058;margin:24px 0 0;max-width:62ch;text-wrap:pretty">A verse square, an event card, and a story. Whoever runs the account fills in text and swaps the photo — the layout never changes, which is what makes a feed look like one church instead of six volunteers.</p>
+
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:24px;margin-top:52px;align-items:start">
+      <div>
+        <p style="font:700 10px/1 Lato,sans-serif;letter-spacing:.18em;text-transform:uppercase;color:#8A7C6C;margin:0 0 16px">Verse square · 1080 × 1080</p>
+        <div style="aspect-ratio:1/1;background:#3A322B;border-radius:14px;padding:11%;display:flex;flex-direction:column;justify-content:space-between">
+          <img src="assets/mbc-mark.png" alt="" style="width:14%;height:auto;object-fit:contain;filter:brightness(0) invert(1);opacity:.8" />
+          <p style="font:400 italic clamp(17px,1.9vw,25px)/1.42 Lora,Georgia,serif;color:#F4EDE2;margin:0;text-wrap:pretty">“Come to me, all you who are weary and burdened, and I will give you rest.”</p>
+          <div>
+            <p style="font:700 9px/1 Lato,sans-serif;letter-spacing:.22em;text-transform:uppercase;color:#DBAE84;margin:0 0 8px">Matthew 11:28</p>
+            <p style="font:400 11px/1 Lato,sans-serif;color:#8A7C6C;margin:0">memorialbaptist.com</p>
+          </div>
+        </div>
+      </div>
+      <div>
+        <p style="font:700 10px/1 Lato,sans-serif;letter-spacing:.18em;text-transform:uppercase;color:#8A7C6C;margin:0 0 16px">Event card · 1080 × 1350</p>
+        <div style="aspect-ratio:4/5;background:#FDFBF7;border:1px solid #E0D5C2;border-radius:14px;overflow:hidden;display:flex;flex-direction:column">
+          <div style="flex:1.1;background:repeating-linear-gradient(135deg,#EFE6D6 0 9px,#E7DCC8 9px 18px);display:grid;place-items:center;border-bottom:1px solid #E7DCC9">
+            <span style="font:400 9px/1.5 ui-monospace,Menlo,monospace;letter-spacing:.1em;text-transform:uppercase;color:#8B7E6E">event photo</span>
+          </div>
+          <div style="flex:1;padding:9%;display:flex;flex-direction:column;justify-content:center">
+            <p style="font:700 8px/1 Lato,sans-serif;letter-spacing:.22em;text-transform:uppercase;color:#4F7A5A;margin:0 0 12px">Serve · September 12</p>
+            <p style="font:400 clamp(19px,2.1vw,27px)/1.12 Lora,Georgia,serif;color:#3A322B;margin:0 0 12px;letter-spacing:-.02em">Serve Tulsa Saturday</p>
+            <p style="font:400 12px/1.55 Lato,sans-serif;color:#6B6058;margin:0">8 AM – noon · Meet in the north lot. Teams of four. Sign up in the Member Hub.</p>
+          </div>
+        </div>
+      </div>
+      <div>
+        <p style="font:700 10px/1 Lato,sans-serif;letter-spacing:.18em;text-transform:uppercase;color:#8A7C6C;margin:0 0 16px">Story · 1080 × 1920</p>
+        <div style="aspect-ratio:9/16;background:#A8613F;border-radius:14px;padding:9%;display:flex;flex-direction:column;justify-content:space-between">
+          <p style="font:700 9px/1 Lato,sans-serif;letter-spacing:.22em;text-transform:uppercase;color:#F6E3D2;margin:0">Memorial Baptist · Tulsa</p>
+          <div>
+            <p style="font:400 clamp(24px,2.8vw,36px)/1.06 Lora,Georgia,serif;color:#FFF9F0;margin:0 0 16px;letter-spacing:-.024em">This Sunday<br />10:30 AM</p>
+            <p style="font:400 13px/1.55 Lato,sans-serif;color:#F6E3D2;margin:0">Baptism Sunday and the Lord's Supper. Guest parking on 28th.</p>
+          </div>
+          <img src="assets/mbc-mark.png" alt="" style="width:16%;height:auto;object-fit:contain;filter:brightness(0) invert(1);opacity:.9" />
+        </div>
+      </div>
+    </div>
+
+    <div style="background:#F1E9DB;border:1px solid #E4D8C4;border-radius:18px;padding:clamp(28px,3.5vw,44px);margin-top:44px;display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:clamp(28px,4vw,56px)">
+      <div>
+        <p style="font:700 10px/1 Lato,sans-serif;letter-spacing:.18em;text-transform:uppercase;color:#4F7A5A;margin:0 0 18px">Photography direction</p>
+        <div style="display:grid;gap:11px">
+          <sc-for list="{{ photoRules }}" as="p" hint-placeholder-count="4">
+            <p style="font:400 15px/1.6 Lato,sans-serif;color:#5C5249;margin:0;padding-left:16px;position:relative"><span style="position:absolute;left:0;top:0;color:#A8613F">·</span>{{ p }}</p>
+          </sc-for>
+        </div>
+      </div>
+      <div>
+        <p style="font:700 10px/1 Lato,sans-serif;letter-spacing:.18em;text-transform:uppercase;color:#4F7A5A;margin:0 0 18px">Voice, in one paragraph</p>
+        <p style="font:400 16px/1.68 Lato,sans-serif;color:#5C5249;margin:0;text-wrap:pretty">Plain, warm, specific, and short. Say the actual time and the actual room. Answer the question a nervous first-time visitor is really asking. Never use hype, never use exclamation points in headlines, and never promise an experience — promise a Bible, a seat, and a person who will talk to you.</p>
+      </div>
+    </div>
+  </section>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1240}}">
+class Component extends DCLogic {
+  renderVals() {
+    return {
+      contents: [
+        { num: '01', title: 'Color', note: 'Palette, print values, proportion, contrast.' },
+        { num: '02', title: 'Typography', note: 'Lora & Lato, the scale, setting rules.' },
+        { num: '03', title: 'Print collateral', note: 'Bulletin, signage, name tags.' },
+        { num: '04', title: 'Social', note: 'Three templates, photo and voice rules.' }
+      ],
+
+      colors: [
+        { name: 'Steeple Brown', hex: '#3A322B', role: 'Primary. Body ink, dark grounds, the logo itself.', specs: [
+          { k: 'HEX', v: '#3A322B' }, { k: 'RGB', v: '58 50 43' }, { k: 'CMYK', v: '58 58 66 62' }, { k: 'PMS', v: 'Black 7 C (near)' }
+        ] },
+        { name: 'Bulletin Cream', hex: '#F8F3EB', role: 'The default ground. In print this is the paper.', specs: [
+          { k: 'HEX', v: '#F8F3EB' }, { k: 'RGB', v: '248 243 235' }, { k: 'CMYK', v: '2 3 7 0' }, { k: 'PMS', v: '7527 C (near)' }
+        ] },
+        { name: 'Lamplight', hex: '#A8613F', role: 'Accent. Buttons, links, eyebrows. Never a large field.', specs: [
+          { k: 'HEX', v: '#A8613F' }, { k: 'RGB', v: '168 97 63' }, { k: 'CMYK', v: '26 68 85 13' }, { k: 'PMS', v: '730 C (near)' }
+        ] },
+        { name: 'Yale Sage', hex: '#4F7A5A', role: 'Secondary accent. Categories and ministry labels only.', specs: [
+          { k: 'HEX', v: '#4F7A5A' }, { k: 'RGB', v: '79 122 90' }, { k: 'CMYK', v: '71 32 71 16' }, { k: 'PMS', v: '5545 C (near)' }
+        ] },
+        { name: 'Brass', hex: '#DBAE84', role: 'Small type and rules on Steeple Brown. Dark grounds only.', specs: [
+          { k: 'HEX', v: '#DBAE84' }, { k: 'RGB', v: '219 174 132' }, { k: 'CMYK', v: '12 33 50 1' }, { k: 'PMS', v: '7508 C (near)' }
+        ] },
+        { name: 'Bark & Stone', hex: '#6B6058', role: 'Supporting text greys: #6B6058 body, #9A8B7B meta, #E4D8C4 rules.', specs: [
+          { k: 'BARK', v: '#6B6058' }, { k: 'STONE', v: '#9A8B7B' }, { k: 'RULE', v: '#E4D8C4' }, { k: 'PAPER', v: '#FFFDF9' }
+        ] }
+      ],
+
+      contrast: [
+        { pair: 'Steeple Brown on Cream', ratio: '11.4 : 1 ✓ AAA' },
+        { pair: 'Bark on Cream (body)', ratio: '5.9 : 1 ✓ AA' },
+        { pair: 'Lamplight on Cream (14pt+)', ratio: '4.6 : 1 ✓ AA' },
+        { pair: 'Brass on Steeple Brown', ratio: '6.2 : 1 ✓ AA' },
+        { pair: 'Stone on Cream — small text', ratio: '3.1 : 1 ✗ labels only' }
+      ],
+
+      colorDonts: [
+        'No gradients. The mark is a line drawing; gradients fight it.',
+        'No pure black (#000) and no pure white (#FFF) — always the warm versions.',
+        'Lamplight and Yale Sage never touch each other directly.',
+        'Never tint the logo. Steeple Brown, Cream, or a knockout to white. Nothing else.'
+      ],
+
+      scale: [
+        { name: 'Display', font: '400 46px/1.03 Lora,Georgia,serif', sample: 'For the glory of God', spec: 'Lora 400 · 80/83 · −2.5%' },
+        { name: 'H1', font: '400 38px/1.06 Lora,Georgia,serif', sample: 'You are welcome here', spec: 'Lora 400 · 66/70 · −2.5%' },
+        { name: 'H2', font: '400 31px/1.1 Lora,Georgia,serif', sample: 'What a Sunday looks like', spec: 'Lora 400 · 46/51 · −2%' },
+        { name: 'H3', font: '600 24px/1.2 Lora,Georgia,serif', sample: 'Guest spaces, north lot', spec: 'Lora 600 · 24/29 · −1%' },
+        { name: 'Scripture', font: '400 italic 22px/1.45 Lora,Georgia,serif', sample: '“Take my yoke upon you…”', spec: 'Lora italic 400 · 18–40/1.45' },
+        { name: 'Lead', font: '300 20px/1.6 Lato,sans-serif', sample: 'A congregation on Yale Avenue', spec: 'Lato 300 · 20/32 · 0' },
+        { name: 'Body', font: '400 17px/1.65 Lato,sans-serif', sample: 'Dinner is at seven in the hall.', spec: 'Lato 400 · 17/28 · max 68ch' },
+        { name: 'Small', font: '400 15px/1.6 Lato,sans-serif', sample: 'Rides available on request.', spec: 'Lato 400 · 15/24' },
+        { name: 'Label', font: '700 11px/1 Lato,sans-serif', sample: 'SENIOR ADULT MINISTRY', spec: 'Lato 700 · 11 · +18% · caps' }
+      ],
+
+      typeRules: [
+        { head: 'Setting rules', items: [
+          'Measure 60–68 characters. Never full-width body text.',
+          'Body leading 1.6–1.7; display leading 1.02–1.12.',
+          'Negative tracking on display only (−2% to −2.5%); positive tracking on labels only (+14% to +22%).',
+          'Curly quotes, en dashes in ranges, one space after a period.'
+        ] },
+        { head: 'Hierarchy discipline', items: [
+          'One H1 per page, always the page\u2019s promise.',
+          'A label above a heading, never below it.',
+          'Scripture is always Lora italic — it is never set in Lato.',
+          'Two type sizes maximum inside any single card.'
+        ] },
+        { head: 'Accessibility floor', items: [
+          '16px minimum on screen; 12pt minimum in print, 14pt for senior-adult material.',
+          'Left-aligned body text — never justified, never centered past two lines.',
+          'All caps for labels only, applied with text-transform so screen readers read words.',
+          'Type must survive 200% zoom and forced 1.5× line-height.'
+        ] }
+      ],
+
+      order: [
+        { item: 'Prelude', who: 'Orchestra' },
+        { item: 'Call to Worship — Psalm 118', who: 'Weatherford' },
+        { item: 'Hymn 12 — Holy, Holy, Holy', who: 'Congregation' },
+        { item: 'Pastoral Prayer', who: 'Ray' },
+        { item: 'Scripture Reading — Mark 10:35–45', who: 'McGuire' },
+        { item: 'Offering & Doxology', who: 'Congregation' },
+        { item: 'Sermon — The Son of Man Came to Serve', who: 'Bice' },
+        { item: 'The Lord\u2019s Supper', who: 'Elders' },
+        { item: 'Benediction', who: 'Bice' }
+      ],
+
+      photoRules: [
+        'Real members, real rooms. No stock photography, ever.',
+        'Natural light, warm white balance. No filters, no heavy vignette.',
+        'People mid-action and mid-conversation — not lined up and smiling at the lens.',
+        'Photograph the ordinary: coffee in the foyer, a hand on a shoulder, an open Bible, kids in the hall.',
+        'Crop to the arch shape (radius 260px top / 20px bottom) for portraits and features.'
+      ]
+    };
+  }
+}
+</script>
+</body>
+</html>

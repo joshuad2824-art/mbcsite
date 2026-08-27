@@ -1,0 +1,1194 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="crossorigin">
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..600&amp;family=Lato:ital,wght@0,300;0,400;0,700;0,900;1,400&amp;display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; }
+  body { margin: 0; background: #F8F3EB; -webkit-font-smoothing: antialiased; }
+  a { color: #A8613F; text-decoration: none; }
+  a:hover { color: #8A4C2E; }
+  button { font-family: inherit; }
+  ::selection { background: #E9D7C2; }
+</style>
+</helmet>
+<div data-mbc-root="1" style="--accent:{{ accent }};--accent-alt:{{ accentAlt }};--ground:{{ ground }};--photo-r:{{ photoRadius }};background:var(--ground,#F8F3EB);min-height:100vh;color:#3A322B">
+  <template id="__bundler_thumbnail"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect width="100" height="100" fill="#3A322B"/><g fill="none" stroke="#DBAE84" stroke-width="3" stroke-linecap="round"><path d="M50 30v40M40 44h20"/><path d="M32 70V52l18-14 18 14v18"/></g></svg></template>
+
+  <header data-mbc-chrome="1" style="position:sticky;top:0;z-index:50;background:rgba(248,243,235,.94);backdrop-filter:blur(12px);border-bottom:1px solid #E7DCC9">
+    <div style="max-width:1320px;margin:0 auto;padding:0 clamp(18px,4vw,56px);min-height:96px;display:flex;align-items:center;gap:clamp(14px,3vw,44px)">
+      <button onClick="{{ goHome }}" style="display:flex;align-items:center;gap:11px;background:none;border:none;padding:0;cursor:pointer;flex:none;margin-right:auto">
+        <img src="assets/mbc-mark.png" alt="" style="width:50px;height:50px;object-fit:contain">
+        <span style="display:flex;flex-direction:column;align-items:flex-start;line-height:1">
+          <span style="font:600 28px/1 Lora,Georgia,serif;letter-spacing:-.015em;color:#3A322B">Memorial</span>
+          <span style="font:700 10px/1 Lato,sans-serif;letter-spacing:.28em;color:#9A8B7B;margin-top:4px">BAPTIST CHURCH</span>
+        </span>
+      </button>
+      <sc-if value="{{ wide }}" hint-placeholder-val="{{ true }}">
+        <nav style="display:flex;align-items:center;gap:clamp(10px,1.7vw,26px);flex:none">
+          <sc-for list="{{ nav }}" as="item" hint-placeholder-count="6">
+            <button onClick="{{ item.go }}" style="background:none;border:none;padding:6px 0;cursor:pointer;font:400 15px/1 Lato,sans-serif;white-space:nowrap;color:{{ item.color }};border-bottom:1px solid {{ item.rule }}" style-hover="color:#A8613F">{{ item.label }}</button>
+          </sc-for>
+        </nav>
+      </sc-if>
+      <div style="display:flex;align-items:center;gap:10px;flex:none">
+        <sc-if value="{{ wide }}" hint-placeholder-val="{{ true }}">
+          <button onClick="{{ goHub }}" style="background:none;border:1px solid #CFC1AB;border-radius:999px;padding:11px 19px;cursor:pointer;font:700 12px/1 Lato,sans-serif;letter-spacing:.06em;white-space:nowrap;color:#3A322B" style-hover="border-color:#3A322B;background:#F1E9DB">Member Hub</button>
+        </sc-if>
+        <button onClick="{{ goGiving }}" style="background:var(--accent,#A8613F);border:none;border-radius:999px;padding:12px 22px;cursor:pointer;font:700 12px/1 Lato,sans-serif;letter-spacing:.06em;color:#FFF9F0" style-hover="filter:brightness(.92)">Give</button>
+        <sc-if value="{{ narrow }}">
+          <button onClick="{{ toggleNav }}" aria-label="Menu" style="background:none;border:1px solid #CFC1AB;border-radius:999px;width:44px;height:44px;cursor:pointer;display:grid;place-items:center;gap:4px;padding:0" style-hover="border-color:#3A322B">
+            <span style="display:block;width:17px;height:1.5px;background:#3A322B"></span>
+            <span style="display:block;width:17px;height:1.5px;background:#3A322B"></span>
+            <span style="display:block;width:17px;height:1.5px;background:#3A322B"></span>
+          </button>
+        </sc-if>
+      </div>
+    </div>
+    <sc-if value="{{ menuOpen }}">
+      <nav style="border-top:1px solid #E7DCC9;background:#FBF7EF;padding:10px clamp(18px,4vw,56px) 22px;display:flex;flex-direction:column;align-items:stretch">
+        <sc-for list="{{ mobileNav }}" as="item" hint-placeholder-count="7">
+          <button onClick="{{ item.go }}" style="background:none;border:none;border-bottom:1px solid #EDE3D3;padding:17px 0;cursor:pointer;text-align:left;font:400 18px/1 Lora,Georgia,serif;color:{{ item.color }}" style-hover="color:#A8613F">{{ item.label }}</button>
+        </sc-for>
+      </nav>
+    </sc-if>
+  </header>
+
+  <sc-if value="{{ isHome }}" hint-placeholder-val="{{ true }}">
+  <main data-screen-label="Home">
+    <section style="max-width:1320px;margin:0 auto;padding:clamp(48px,6vw,96px) clamp(20px,4vw,56px) clamp(40px,5vw,72px);display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);gap:clamp(32px,5vw,80px);align-items:center">
+      <div>
+        <p style="font:700 11px/1 Lato,sans-serif;letter-spacing:.2em;text-transform:uppercase;color:var(--accent,#A8613F);margin:0 0 24px">Midtown Tulsa · Since 1948</p>
+        <h1 style="font:400 clamp(42px,5.4vw,80px)/1.03 Lora,Georgia,serif;letter-spacing:-.025em;margin:0;text-wrap:balance">For the glory of God and the good of all&nbsp;people.</h1>
+        <p style="font:300 20px/1.62 Lato,sans-serif;color:#6B6058;margin:26px 0 0;max-width:50ch;text-wrap:pretty">A congregation on Yale Avenue learning to grow in love for Christ and one another — ordinary people, an open Bible, and a table with room at it.</p>
+        <div style="display:flex;flex-wrap:wrap;gap:12px;margin-top:36px">
+          <button onClick="{{ goVisit }}" style="background:var(--accent,#A8613F);border:none;border-radius:999px;padding:16px 30px;cursor:pointer;font:700 14px/1 Lato,sans-serif;letter-spacing:.03em;color:#FFF9F0" style-hover="filter:brightness(.92)">Plan your visit</button>
+          <button onClick="{{ goSermons }}" style="background:none;border:1px solid #CFC1AB;border-radius:999px;padding:16px 28px;cursor:pointer;font:700 14px/1 Lato,sans-serif;letter-spacing:.03em;color:#3A322B" style-hover="border-color:#3A322B;background:#F1E9DB">Watch a service</button>
+        </div>
+      </div>
+      <div style="border-radius:var(--photo-r,260px 260px 20px 20px);overflow:hidden;border:1px solid #E0D5C2;background:repeating-linear-gradient(135deg,#EFE6D6 0 9px,#E7DCC8 9px 18px);aspect-ratio:4/5;display:grid;place-items:center">
+        <span style="font:400 11px/1.6 ui-monospace,SFMono-Regular,Menlo,monospace;letter-spacing:.1em;text-transform:uppercase;color:#8B7E6E;text-align:center;padding:0 24px">congregation singing<br>portrait crop</span>
+      </div>
+    </section>
+
+    <section style="background:#3A322B;color:#F4EDE2">
+      <div style="max-width:1320px;margin:0 auto;padding:clamp(36px,4vw,56px) clamp(20px,4vw,56px);display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:clamp(24px,3vw,44px)">
+        <sc-for list="{{ times }}" as="t" hint-placeholder-count="4">
+          <div>
+            <p style="font:700 10px/1 Lato,sans-serif;letter-spacing:.2em;text-transform:uppercase;color:#B8A48C;margin:0 0 12px">{{ t.day }}</p>
+            <p style="font:400 15px/1.4 Lato,sans-serif;color:#E4D9C8;margin:0 0 6px">{{ t.name }}</p>
+            <p style="font:400 30px/1 Lora,Georgia,serif;margin:0;letter-spacing:-.01em">{{ t.time }}</p>
+          </div>
+        </sc-for>
+        <div style="border-left:1px solid #55493F;padding-left:clamp(24px,3vw,44px)">
+          <p style="font:700 10px/1 Lato,sans-serif;letter-spacing:.2em;text-transform:uppercase;color:#B8A48C;margin:0 0 12px">Find us</p>
+          <p style="font:400 17px/1.5 Lato,sans-serif;color:#F4EDE2;margin:0">2800 S. Yale Ave.<br>Tulsa, OK 74114</p>
+          <a href="https://goo.gl/maps/egYN21uTEHYcKmpL9" style="display:inline-block;margin-top:14px;font:700 12px/1 Lato,sans-serif;letter-spacing:.08em;text-transform:uppercase;color:#DBAE84;border-bottom:1px solid #7A6553;padding-bottom:4px">Get directions</a>
+        </div>
+      </div>
+    </section>
+
+    
+
+    <section style="background:#F1E9DB;border-top:1px solid #E4D8C4;border-bottom:1px solid #E4D8C4">
+      <div style="max-width:1320px;margin:0 auto;padding:clamp(56px,6vw,92px) clamp(20px,4vw,56px);display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:clamp(32px,5vw,72px);align-items:center">
+        <div style="border-radius:var(--photo-r,260px 260px 20px 20px);overflow:hidden;border:1px solid #DED2BC;background:repeating-linear-gradient(135deg,#E7DCC8 0 9px,#DFD3BC 9px 18px);aspect-ratio:1/1;display:grid;place-items:center">
+          <span style="font:400 11px/1.6 ui-monospace,Menlo,monospace;letter-spacing:.1em;text-transform:uppercase;color:#8B7E6E;text-align:center;padding:0 24px">pastor preaching<br>square crop</span>
+        </div>
+        <div>
+          <p style="font:700 11px/1 Lato,sans-serif;letter-spacing:.2em;text-transform:uppercase;color:var(--accent,#A8613F);margin:0 0 18px">This Sunday</p>
+          <p style="font:400 15px/1 Lato,sans-serif;color:#8A7C6C;margin:0 0 10px">Current series · The Gospel of Mark</p>
+          <h2 style="font:400 clamp(30px,3.4vw,46px)/1.12 Lora,Georgia,serif;letter-spacing:-.02em;margin:0">The Son of Man Came to Serve</h2>
+          <p style="font:400 18px/1.6 Lato,sans-serif;color:#6B6058;margin:20px 0 0;max-width:48ch">Mark 10:35–45 · Jacob Bice. We finish Mark's third passion prediction and ask what greatness actually costs.</p>
+          <div style="display:flex;flex-wrap:wrap;gap:12px;margin-top:32px">
+            <button onClick="{{ goSermons }}" style="background:#3A322B;border:none;border-radius:999px;padding:15px 28px;cursor:pointer;font:700 13px/1 Lato,sans-serif;letter-spacing:.04em;color:#F4EDE2" style-hover="background:#241E1A">Sermon archive</button>
+            <button onClick="{{ goHub }}" style="background:none;border:1px solid #C6B69E;border-radius:999px;padding:15px 26px;cursor:pointer;font:700 13px/1 Lato,sans-serif;letter-spacing:.04em;color:#3A322B" style-hover="border-color:#3A322B">Get the sermon notes</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section style="max-width:1320px;margin:0 auto;padding:clamp(64px,7vw,110px) clamp(20px,4vw,56px)">
+      <div style="display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:20px">
+        <div>
+          <p style="font:700 11px/1 Lato,sans-serif;letter-spacing:.2em;text-transform:uppercase;color:var(--accent,#A8613F);margin:0 0 18px">What we practice</p>
+          <h2 style="font:400 clamp(30px,3.4vw,46px)/1.1 Lora,Georgia,serif;letter-spacing:-.02em;margin:0;max-width:22ch">Five habits that shape everything we do.</h2>
+        </div>
+        <button onClick="{{ goAbout }}" style="background:none;border:none;padding:0;cursor:pointer;font:700 12px/1 Lato,sans-serif;letter-spacing:.1em;text-transform:uppercase;color:var(--accent,#A8613F);border-bottom:1px solid #D9C6AE;padding-bottom:5px">Who we are</button>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:1px;margin-top:44px;background:#E4D8C4;border:1px solid #E4D8C4;border-radius:16px;overflow:hidden">
+        <sc-for list="{{ values }}" as="v" hint-placeholder-count="5">
+          <div style="background:#FFFDF9;padding:32px 26px;display:flex;flex-direction:column;gap:16px;min-height:270px">
+            <h3 style="font:700 11px/1 Lato,sans-serif;letter-spacing:.18em;text-transform:uppercase;color:var(--accent,#A8613F);margin:0">{{ v.name }}</h3>
+            <p style="font:400 italic 17px/1.55 Lora,Georgia,serif;color:#4A4139;margin:0;flex:1;text-wrap:pretty">{{ v.verse }}</p>
+            <p style="font:700 11px/1 Lato,sans-serif;letter-spacing:.1em;text-transform:uppercase;color:#9A8B7B;margin:0">{{ v.ref }}</p>
+          </div>
+        </sc-for>
+      </div>
+    </section>
+
+    <section style="max-width:1320px;margin:0 auto;padding:0 clamp(20px,4vw,56px) clamp(64px,7vw,110px)">
+      <div style="display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:20px;margin-bottom:36px">
+        <h2 style="font:400 clamp(28px,3vw,40px)/1.1 Lora,Georgia,serif;letter-spacing:-.02em;margin:0">Coming up</h2>
+        <button onClick="{{ goEvents }}" style="background:none;border:none;padding:0 0 5px;cursor:pointer;font:700 12px/1 Lato,sans-serif;letter-spacing:.1em;text-transform:uppercase;color:var(--accent,#A8613F);border-bottom:1px solid #D9C6AE">Full calendar</button>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px">
+        <sc-for list="{{ homeEvents }}" as="e" hint-placeholder-count="3">
+          <div style="background:#FFFDF9;border:1px solid #E7DCC9;border-radius:18px;overflow:hidden;display:flex;flex-direction:column">
+            <div style="background:repeating-linear-gradient(135deg,#EFE6D6 0 9px,#E7DCC8 9px 18px);aspect-ratio:16/9;display:grid;place-items:center;border-bottom:1px solid #E7DCC9">
+              <span style="font:400 10px/1.5 ui-monospace,Menlo,monospace;letter-spacing:.1em;text-transform:uppercase;color:#8B7E6E">event image 16:9</span>
+            </div>
+            <div style="padding:26px;display:flex;flex-direction:column;gap:10px;flex:1">
+              <p style="font:700 10px/1 Lato,sans-serif;letter-spacing:.16em;text-transform:uppercase;color:var(--accent-alt,#4F7A5A);margin:0">{{ e.cat }}</p>
+              <h3 style="font:600 20px/1.25 Lora,Georgia,serif;margin:0;letter-spacing:-.01em">{{ e.title }}</h3>
+              <p style="font:400 15px/1.55 Lato,sans-serif;color:#6B6058;margin:0">{{ e.when }}</p>
+            </div>
+          </div>
+        </sc-for>
+      </div>
+    </section>
+
+    <section style="background:#3A322B;color:#F4EDE2">
+      <div style="max-width:1320px;margin:0 auto;padding:clamp(56px,6vw,96px) clamp(20px,4vw,56px);display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:clamp(32px,5vw,72px);align-items:center">
+        <div>
+          <p style="font:700 11px/1 Lato,sans-serif;letter-spacing:.2em;text-transform:uppercase;color:#B8A48C;margin:0 0 18px">For members</p>
+          <h2 style="font:400 clamp(30px,3.4vw,44px)/1.12 Lora,Georgia,serif;letter-spacing:-.02em;margin:0">Everything a member needs, in one place.</h2>
+          <p style="font:300 18px/1.62 Lato,sans-serif;color:#C8BAA8;margin:22px 0 0;max-width:46ch">Sermon notes and the passage of the week, your group and serve schedule, reading plans, the prayer wall, and the study library — no more digging through email.</p>
+          <button onClick="{{ goHub }}" style="margin-top:32px;background:#F4EDE2;border:none;border-radius:999px;padding:16px 30px;cursor:pointer;font:700 13px/1 Lato,sans-serif;letter-spacing:.04em;color:#3A322B" style-hover="background:#fff">Open the Member Hub</button>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:1px;background:#55493F;border:1px solid #55493F;border-radius:14px;overflow:hidden">
+          <sc-for list="{{ hubTeaser }}" as="h" hint-placeholder-count="6">
+            <div style="background:#332C26;padding:22px 20px;min-height:96px">
+              <p style="font:400 15px/1.4 Lato,sans-serif;color:#E4D9C8;margin:0">{{ h }}</p>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+    </section>
+  </main>
+  </sc-if>
+
+  <sc-if value="{{ isVisit }}">
+  <main data-screen-label="Visit">
+    <section style="max-width:1320px;margin:0 auto;padding:clamp(48px,6vw,88px) clamp(20px,4vw,56px) clamp(32px,4vw,56px);max-width:900px">
+      <p style="font:700 11px/1 Lato,sans-serif;letter-spacing:.2em;text-transform:uppercase;color:var(--accent,#A8613F);margin:0 0 24px">Plan your visit</p>
+      <h1 style="font:400 clamp(40px,5vw,72px)/1.05 Lora,Georgia,serif;letter-spacing:-.025em;margin:0;text-wrap:balance">You are welcome here!</h1>
+      <p style="font:300 20px/1.62 Lato,sans-serif;color:#6B6058;margin:26px 0 0;max-width:58ch">We'll meet you at the door.</p>
+    </section>
+
+    <section style="max-width:1320px;margin:0 auto;padding:0 clamp(20px,4vw,56px) clamp(56px,6vw,90px)">
+      <div style="background:#FFFDF9;border:1px solid #E7DCC9;border-radius:20px;padding:clamp(28px,4vw,48px)">
+        <h2 style="font:400 clamp(26px,2.6vw,34px)/1.15 Lora,Georgia,serif;letter-spacing:-.015em;margin:0 0 34px">What a Sunday looks like</h2>
+        <div style="display:grid;gap:0">
+          <sc-for list="{{ sundayFlow }}" as="s" hint-placeholder-count="4">
+            <div style="display:grid;grid-template-columns:110px 1fr;gap:clamp(16px,3vw,40px);padding:24px 0;border-top:1px solid #EDE3D3;align-items:start">
+              <p style="font:400 22px/1.2 Lora,Georgia,serif;color:var(--accent,#A8613F);margin:0">{{ s.time }}</p>
+              <div>
+                <h3 style="font:600 19px/1.3 Lora,Georgia,serif;margin:0 0 8px">{{ s.title }}</h3>
+                <p style="font:400 16px/1.62 Lato,sans-serif;color:#6B6058;margin:0;max-width:62ch;text-wrap:pretty">{{ s.body }}</p>
+              </div>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+    </section>
+
+    <section style="max-width:1320px;margin:0 auto;padding:0 clamp(20px,4vw,56px) clamp(56px,6vw,90px);display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:20px">
+      <div style="background:#F1E9DB;border:1px solid #E4D8C4;border-radius:20px;padding:36px">
+        <p style="font:700 11px/1 Lato,sans-serif;letter-spacing:.18em;text-transform:uppercase;color:var(--accent-alt,#4F7A5A);margin:0 0 16px">Parking</p>
+        <h3 style="font:400 26px/1.2 Lora,Georgia,serif;margin:0 0 14px;letter-spacing:-.015em">Guest spaces, north lot</h3>
+        <p style="font:400 16px/1.62 Lato,sans-serif;color:#6B6058;margin:0">Reserved parking for guests runs along 28th Street, across from the building. Enter through the doors under the steeple — a host will be there.</p>
+      </div>
+      <div style="background:#F1E9DB;border:1px solid #E4D8C4;border-radius:20px;padding:36px">
+        <p style="font:700 11px/1 Lato,sans-serif;letter-spacing:.18em;text-transform:uppercase;color:var(--accent-alt,#4F7A5A);margin:0 0 16px">Kids</p>
+        <h3 style="font:400 26px/1.2 Lora,Georgia,serif;margin:0 0 14px;letter-spacing:-.015em">Secure check-in for birth–5th grade</h3>
+        <p style="font:400 16px/1.62 Lato,sans-serif;color:#6B6058;margin:0 0 18px">Every worker is background-checked. You'll get a matching tag and a text if you're needed.</p>
+        <button onClick="{{ goMinistries }}" style="background:none;border:none;padding:0 0 5px;cursor:pointer;font:700 12px/1 Lato,sans-serif;letter-spacing:.1em;text-transform:uppercase;color:var(--accent,#A8613F);border-bottom:1px solid #D9C6AE">MBC Kids</button>
+      </div>
+      <div style="background:#F1E9DB;border:1px solid #E4D8C4;border-radius:20px;padding:36px">
+        <p style="font:700 11px/1 Lato,sans-serif;letter-spacing:.18em;text-transform:uppercase;color:var(--accent-alt,#4F7A5A);margin:0 0 16px">Getting here</p>
+        <h3 style="font:400 26px/1.2 Lora,Georgia,serif;margin:0 0 14px;letter-spacing:-.015em">Midtown, just north of the BA</h3>
+        <p style="font:400 16px/1.62 Lato,sans-serif;color:#6B6058;margin:0 0 18px">2800 S. Yale Ave., a half mile north of the Broken Arrow Expressway (SH 51 / US 64).</p>
+        <a href="https://goo.gl/maps/egYN21uTEHYcKmpL9" style="font:700 12px/1 Lato,sans-serif;letter-spacing:.1em;text-transform:uppercase;border-bottom:1px solid #D9C6AE;padding-bottom:5px">Open in Maps</a>
+      </div>
+    </section>
+
+    <section style="max-width:1320px;margin:0 auto;padding:0 clamp(20px,4vw,56px) clamp(64px,7vw,110px)">
+      <h2 style="font:400 clamp(26px,2.6vw,34px)/1.15 Lora,Georgia,serif;letter-spacing:-.015em;margin:0 0 30px">Honest answers</h2>
+      <div style="border-top:1px solid #E4D8C4">
+        <sc-for list="{{ faqs }}" as="f" hint-placeholder-count="5">
+          <div style="border-bottom:1px solid #E4D8C4;padding:26px 0;display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:clamp(20px,4vw,56px)">
+            <h3 style="font:600 19px/1.35 Lora,Georgia,serif;margin:0">{{ f.q }}</h3>
+            <p style="font:400 16px/1.65 Lato,sans-serif;color:#6B6058;margin:0;text-wrap:pretty">{{ f.a }}</p>
+          </div>
+        </sc-for>
+      </div>
+    </section>
+  </main>
+  </sc-if>
+
+  <sc-if value="{{ isAbout }}">
+  <main data-screen-label="About">
+    <section style="max-width:960px;margin:0 auto;padding:clamp(48px,6vw,96px) clamp(20px,4vw,56px) clamp(40px,5vw,64px);text-align:center">
+      <p style="font:700 11px/1 Lato,sans-serif;letter-spacing:.2em;text-transform:uppercase;color:var(--accent,#A8613F);margin:0 0 26px">Who we are</p>
+      <p style="font:400 italic clamp(24px,3.2vw,40px)/1.42 Lora,Georgia,serif;color:#3A322B;margin:0;text-wrap:pretty">“Come to me, all you who are weary and burdened, and I will give you rest. Take my yoke upon you and learn from me, for I am gentle and humble in heart, and you will find rest for your souls.”</p>
+      <p style="font:700 11px/1 Lato,sans-serif;letter-spacing:.18em;text-transform:uppercase;color:#9A8B7B;margin:28px 0 0">Matthew 11:28–30</p>
+    </section>
+
+    <section style="max-width:1320px;margin:0 auto;padding:0 clamp(20px,4vw,56px) clamp(56px,6vw,90px);display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:clamp(32px,5vw,72px)">
+      <div>
+        <h2 style="font:400 clamp(28px,3vw,40px)/1.12 Lora,Georgia,serif;letter-spacing:-.02em;margin:0 0 22px">Our vision</h2>
+        <p style="font:400 18px/1.68 Lato,sans-serif;color:#6B6058;margin:0 0 18px;text-wrap:pretty">Our vision is to see the church live in faithful obedience for the glory of God and the good of all people. We believe every member matters, and that God has given each person a gifting and a role.</p>
+        <p style="font:400 18px/1.68 Lato,sans-serif;color:#6B6058;margin:0;text-wrap:pretty">We pray God would use us to make disciples from our neighbors to the nations, and teach us to love Him and one another more and more faithfully.</p>
+      </div>
+      <div style="border-radius:var(--photo-r,260px 260px 20px 20px);overflow:hidden;border:1px solid #E0D5C2;background:repeating-linear-gradient(135deg,#EFE6D6 0 9px,#E7DCC8 9px 18px);aspect-ratio:4/5;display:grid;place-items:center">
+        <span style="font:400 11px/1.6 ui-monospace,Menlo,monospace;letter-spacing:.1em;text-transform:uppercase;color:#8B7E6E;text-align:center;padding:0 24px">sanctuary interior<br>or church exterior</span>
+      </div>
+    </section>
+
+    <section style="background:#F1E9DB;border-top:1px solid #E4D8C4;border-bottom:1px solid #E4D8C4">
+      <div style="max-width:1320px;margin:0 auto;padding:clamp(56px,6vw,92px) clamp(20px,4vw,56px)">
+        <h2 style="font:400 clamp(28px,3vw,40px)/1.12 Lora,Georgia,serif;letter-spacing:-.02em;margin:0 0 40px">Our values</h2>
+        <div style="display:grid;gap:0;border-top:1px solid #DED2BC">
+          <sc-for list="{{ values }}" as="v" hint-placeholder-count="5">
+            <div style="display:grid;grid-template-columns:minmax(0,180px) minmax(0,1fr);gap:clamp(20px,4vw,56px);padding:28px 0;border-bottom:1px solid #DED2BC;align-items:baseline">
+              <h3 style="font:400 26px/1.1 Lora,Georgia,serif;margin:0;letter-spacing:-.015em;color:var(--accent,#A8613F)">{{ v.name }}</h3>
+              <div>
+                <p style="font:400 italic 18px/1.6 Lora,Georgia,serif;color:#4A4139;margin:0 0 10px;max-width:66ch;text-wrap:pretty">{{ v.verse }}</p>
+                <p style="font:700 11px/1 Lato,sans-serif;letter-spacing:.14em;text-transform:uppercase;color:#9A8B7B;margin:0">{{ v.ref }}</p>
+              </div>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+    </section>
+
+    <section style="max-width:1320px;margin:0 auto;padding:clamp(56px,6vw,92px) clamp(20px,4vw,56px)">
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:clamp(32px,5vw,64px)">
+        <div>
+          <p style="font:700 11px/1 Lato,sans-serif;letter-spacing:.2em;text-transform:uppercase;color:var(--accent,#A8613F);margin:0 0 18px">Our beliefs</p>
+          <h2 style="font:400 clamp(28px,3vw,40px)/1.12 Lora,Georgia,serif;letter-spacing:-.02em;margin:0 0 20px">We hold the Baptist Faith &amp; Message.</h2>
+          <p style="font:400 17px/1.65 Lato,sans-serif;color:#6B6058;margin:0 0 24px;max-width:44ch">A Southern Baptist congregation, cooperating with churches across Oklahoma and the world. The full confession is available in the Member Hub library.</p>
+          <button onClick="{{ goHub }}" style="background:none;border:1px solid #CFC1AB;border-radius:999px;padding:14px 24px;cursor:pointer;font:700 12px/1 Lato,sans-serif;letter-spacing:.06em;color:#3A322B" style-hover="border-color:#3A322B;background:#F1E9DB">Read the full confession</button>
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1px;background:#E4D8C4;border:1px solid #E4D8C4;border-radius:14px;overflow:hidden;align-content:start">
+          <sc-for list="{{ beliefs }}" as="b" hint-placeholder-count="8">
+            <div style="background:#FFFDF9;padding:22px 20px">
+              <h3 style="font:700 11px/1 Lato,sans-serif;letter-spacing:.14em;text-transform:uppercase;color:var(--accent-alt,#4F7A5A);margin:0 0 10px">{{ b.name }}</h3>
+              <p style="font:400 15px/1.55 Lato,sans-serif;color:#6B6058;margin:0;text-wrap:pretty">{{ b.body }}</p>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+    </section>
+
+    <section style="max-width:1320px;margin:0 auto;padding:0 clamp(20px,4vw,56px) clamp(64px,7vw,110px)">
+      <div style="background:#3A322B;color:#F4EDE2;border-radius:22px;padding:clamp(32px,4vw,56px);display:flex;flex-wrap:wrap;gap:28px;align-items:center;justify-content:space-between">
+        <div>
+          <h2 style="font:400 clamp(26px,2.8vw,36px)/1.15 Lora,Georgia,serif;letter-spacing:-.02em;margin:0">Meet the people who serve here.</h2>
+          <p style="font:300 17px/1.6 Lato,sans-serif;color:#C8BAA8;margin:14px 0 0;max-width:50ch">Eight staff, a body of deacons, and a lot of volunteers.</p>
+        </div>
+        <button onClick="{{ goStaff }}" style="background:#F4EDE2;border:none;border-radius:999px;padding:16px 30px;cursor:pointer;font:700 13px/1 Lato,sans-serif;letter-spacing:.04em;color:#3A322B;flex:none" style-hover="background:#fff">Our team</button>
+      </div>
+    </section>
+  </main>
+  </sc-if>
+
+  <sc-if value="{{ isStaff }}">
+  <main data-screen-label="Staff">
+    <section style="max-width:1320px;margin:0 auto;padding:clamp(48px,6vw,88px) clamp(20px,4vw,56px) clamp(36px,4vw,56px)">
+      <p style="font:700 11px/1 Lato,sans-serif;letter-spacing:.2em;text-transform:uppercase;color:var(--accent,#A8613F);margin:0 0 24px">Our team</p>
+      <h1 style="font:400 clamp(38px,4.6vw,66px)/1.06 Lora,Georgia,serif;letter-spacing:-.025em;margin:0;max-width:20ch">The people you'll meet on a Sunday.</h1>
+    </section>
+    <section style="max-width:1320px;margin:0 auto;padding:0 clamp(20px,4vw,56px) clamp(64px,7vw,110px)">
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:clamp(20px,3vw,36px)">
+        <sc-for list="{{ staff }}" as="p" hint-placeholder-count="8">
+          <div>
+            <div style="border-radius:var(--photo-r,260px 260px 20px 20px);overflow:hidden;border:1px solid #E0D5C2;background:repeating-linear-gradient(135deg,#EFE6D6 0 9px,#E7DCC8 9px 18px);aspect-ratio:4/5;display:grid;place-items:center;margin-bottom:18px">
+              <span style="font:400 10px/1.5 ui-monospace,Menlo,monospace;letter-spacing:.1em;text-transform:uppercase;color:#8B7E6E">portrait 4:5</span>
+            </div>
+            <h3 style="font:600 21px/1.2 Lora,Georgia,serif;margin:0 0 6px;letter-spacing:-.01em">{{ p.name }}</h3>
+            <p style="font:700 11px/1 Lato,sans-serif;letter-spacing:.14em;text-transform:uppercase;color:var(--accent,#A8613F);margin:0 0 12px">{{ p.role }}</p>
+            
+            <a href="mailto:staff@memorialbaptist.com" style="font:400 14px/1 Lato,sans-serif;border-bottom:1px solid #E0D0B8;padding-bottom:3px">Email</a>
+          </div>
+        </sc-for>
+      </div>
+    </section>
+  </main>
+  </sc-if>
+
+  <sc-if value="{{ isSermons }}">
+  <main data-screen-label="Sermons">
+    <section style="max-width:1320px;margin:0 auto;padding:clamp(48px,6vw,88px) clamp(20px,4vw,56px) clamp(36px,4vw,52px)">
+      <p style="font:700 11px/1 Lato,sans-serif;letter-spacing:.2em;text-transform:uppercase;color:var(--accent,#A8613F);margin:0 0 24px">Sermons</p>
+      <h1 style="font:400 clamp(38px,4.6vw,66px)/1.06 Lora,Georgia,serif;letter-spacing:-.025em;margin:0;max-width:22ch">Every sermon, searchable by book, series, or speaker.</h1>
+    </section>
+
+    <section style="max-width:1320px;margin:0 auto;padding:0 clamp(20px,4vw,56px) clamp(48px,5vw,72px)">
+      <div style="background:#3A322B;color:#F4EDE2;border-radius:22px;overflow:hidden;display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr))">
+        <div style="background:repeating-linear-gradient(135deg,#4A4139 0 9px,#413A32 9px 18px);min-height:300px;display:grid;place-items:center">
+          <span style="font:400 10px/1.5 ui-monospace,Menlo,monospace;letter-spacing:.1em;text-transform:uppercase;color:#9A8B7B">series graphic 16:9</span>
+        </div>
+        <div style="padding:clamp(30px,3.5vw,50px);display:flex;flex-direction:column;justify-content:center">
+          <p style="font:700 11px/1 Lato,sans-serif;letter-spacing:.18em;text-transform:uppercase;color:#B8A48C;margin:0 0 16px">Latest · Aug 17, 2026</p>
+          <h2 style="font:400 clamp(26px,2.8vw,38px)/1.14 Lora,Georgia,serif;letter-spacing:-.02em;margin:0">The Son of Man Came to Serve</h2>
+          <p style="font:400 17px/1.6 Lato,sans-serif;color:#C8BAA8;margin:16px 0 0">Mark 10:35–45 · Jacob Bice · 38 min</p>
+          <div style="display:flex;flex-wrap:wrap;gap:10px;margin-top:30px">
+            <button style="background:#F4EDE2;border:none;border-radius:999px;padding:14px 26px;cursor:pointer;font:700 13px/1 Lato,sans-serif;letter-spacing:.04em;color:#3A322B" style-hover="background:#fff">▶ Watch</button>
+            <button style="background:none;border:1px solid #6B5E52;border-radius:999px;padding:14px 24px;cursor:pointer;font:700 13px/1 Lato,sans-serif;letter-spacing:.04em;color:#F4EDE2" style-hover="border-color:#F4EDE2">Listen</button>
+            <button style="background:none;border:1px solid #6B5E52;border-radius:999px;padding:14px 24px;cursor:pointer;font:700 13px/1 Lato,sans-serif;letter-spacing:.04em;color:#F4EDE2" style-hover="border-color:#F4EDE2">Sermon notes (PDF)</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section style="max-width:1320px;margin:0 auto;padding:0 clamp(20px,4vw,56px) clamp(64px,7vw,110px)">
+      <div style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:8px">
+        <sc-for list="{{ sermonFilters }}" as="f" hint-placeholder-count="5">
+          <button onClick="{{ f.go }}" style="border-radius:999px;padding:11px 20px;cursor:pointer;font:700 12px/1 Lato,sans-serif;letter-spacing:.05em;background:{{ f.bg }};color:{{ f.fg }};border:1px solid {{ f.bd }}">{{ f.label }}</button>
+        </sc-for>
+      </div>
+      <div>
+        <sc-for list="{{ sermons }}" as="s" hint-placeholder-count="6">
+          <div style="display:grid;grid-template-columns:minmax(0,100px) minmax(0,1.4fr) minmax(0,1fr) minmax(0,90px);gap:clamp(14px,2.5vw,32px);padding:24px 4px;border-bottom:1px solid #E4D8C4;align-items:baseline" style-hover="background:#F1E9DB">
+            <p style="font:700 11px/1.4 Lato,sans-serif;letter-spacing:.1em;text-transform:uppercase;color:#9A8B7B;margin:0">{{ s.date }}</p>
+            <div>
+              <h3 style="font:600 19px/1.3 Lora,Georgia,serif;margin:0 0 6px">{{ s.title }}</h3>
+              <p style="font:400 14px/1.4 Lato,sans-serif;color:#8A7C6C;margin:0">{{ s.series }}</p>
+            </div>
+            <p style="font:400 16px/1.4 Lato,sans-serif;color:#4A4139;margin:0">{{ s.ref }}<br><span style="font-size:14px;color:#8A7C6C">{{ s.speaker }}</span></p>
+            <p style="font:400 14px/1.4 Lato,sans-serif;color:#8A7C6C;margin:0;text-align:right">{{ s.len }}</p>
+          </div>
+        </sc-for>
+      </div>
+    </section>
+  </main>
+  </sc-if>
+
+  <sc-if value="{{ isEvents }}">
+  <main data-screen-label="Events">
+    <section style="max-width:1320px;margin:0 auto;padding:clamp(48px,6vw,88px) clamp(20px,4vw,56px) clamp(32px,4vw,48px);display:flex;flex-wrap:wrap;gap:24px;align-items:flex-end;justify-content:space-between">
+      <div>
+        <p style="font:700 11px/1 Lato,sans-serif;letter-spacing:.2em;text-transform:uppercase;color:var(--accent,#A8613F);margin:0 0 24px">Calendar</p>
+        <h1 style="font:400 clamp(38px,4.6vw,66px)/1.06 Lora,Georgia,serif;letter-spacing:-.025em;margin:0">September 2026</h1>
+      </div>
+      <div style="display:flex;gap:8px">
+        <button style="background:none;border:1px solid #CFC1AB;border-radius:999px;width:44px;height:44px;cursor:pointer;font:400 16px/1 Lato,sans-serif;color:#3A322B" style-hover="border-color:#3A322B">←</button>
+        <button style="background:none;border:1px solid #CFC1AB;border-radius:999px;width:44px;height:44px;cursor:pointer;font:400 16px/1 Lato,sans-serif;color:#3A322B" style-hover="border-color:#3A322B">→</button>
+      </div>
+    </section>
+
+    <section style="max-width:1320px;margin:0 auto;padding:0 clamp(20px,4vw,56px) clamp(64px,7vw,110px)">
+      <div style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:36px">
+        <sc-for list="{{ eventFilters }}" as="f" hint-placeholder-count="5">
+          <button onClick="{{ f.go }}" style="border-radius:999px;padding:11px 20px;cursor:pointer;font:700 12px/1 Lato,sans-serif;letter-spacing:.05em;background:{{ f.bg }};color:{{ f.fg }};border:1px solid {{ f.bd }}">{{ f.label }}</button>
+        </sc-for>
+      </div>
+      <div style="border-top:1px solid #E4D8C4">
+        <sc-for list="{{ events }}" as="e" hint-placeholder-count="6">
+          <div style="display:grid;grid-template-columns:minmax(0,84px) minmax(0,1fr) minmax(0,150px);gap:clamp(16px,3vw,40px);padding:26px 4px;border-bottom:1px solid #E4D8C4;align-items:center" style-hover="background:#F1E9DB">
+            <div style="text-align:center;border-right:1px solid #E4D8C4;padding-right:12px">
+              <p style="font:700 10px/1 Lato,sans-serif;letter-spacing:.16em;text-transform:uppercase;color:var(--accent,#A8613F);margin:0 0 6px">{{ e.mon }}</p>
+              <p style="font:400 30px/1 Lora,Georgia,serif;margin:0">{{ e.day }}</p>
+            </div>
+            <div>
+              <p style="font:700 10px/1 Lato,sans-serif;letter-spacing:.16em;text-transform:uppercase;color:var(--accent-alt,#4F7A5A);margin:0 0 8px">{{ e.cat }}</p>
+              <h3 style="font:600 21px/1.28 Lora,Georgia,serif;margin:0 0 8px;letter-spacing:-.01em">{{ e.title }}</h3>
+              <p style="font:400 15px/1.55 Lato,sans-serif;color:#6B6058;margin:0;max-width:64ch;text-wrap:pretty">{{ e.body }}</p>
+              <p style="font:400 14px/1.4 Lato,sans-serif;color:#8A7C6C;margin:10px 0 0">{{ e.when }} · {{ e.where }}</p>
+            </div>
+            <button style="justify-self:end;background:none;border:1px solid #CFC1AB;border-radius:999px;padding:13px 22px;cursor:pointer;font:700 12px/1 Lato,sans-serif;letter-spacing:.06em;color:#3A322B" style-hover="border-color:#3A322B;background:#FFFDF9">{{ e.cta }}</button>
+          </div>
+        </sc-for>
+      </div>
+    </section>
+  </main>
+  </sc-if>
+
+  <sc-if value="{{ isGroups }}">
+  <main data-screen-label="Connect">
+    <section style="max-width:1320px;margin:0 auto;padding:clamp(48px,6vw,88px) clamp(20px,4vw,56px) clamp(36px,4vw,52px);max-width:880px">
+      <p style="font:700 11px/1 Lato,sans-serif;letter-spacing:.2em;text-transform:uppercase;color:var(--accent,#A8613F);margin:0 0 24px">Connect</p>
+      <h1 style="font:400 clamp(38px,4.6vw,66px)/1.06 Lora,Georgia,serif;letter-spacing:-.025em;margin:0;text-wrap:balance">Our aim is to build community around the Bible.</h1>
+      <p style="font:300 19px/1.62 Lato,sans-serif;color:#6B6058;margin:24px 0 0;max-width:56ch">Join us for: a Sunday morning class at 9:15, or a community group that meets during the week to discuss the sermon passage.</p>
+    </section>
+
+    <section style="max-width:1320px;margin:0 auto;padding:0 clamp(20px,4vw,56px) clamp(48px,5vw,72px)">
+      <div style="display:flex;flex-wrap:wrap;gap:10px;align-items:center;padding:20px 24px;background:#FFFDF9;border:1px solid #E7DCC9;border-radius:16px">
+        <span style="font:700 11px/1 Lato,sans-serif;letter-spacing:.16em;text-transform:uppercase;color:#9A8B7B;margin-right:8px">Meets on</span>
+        <sc-for list="{{ dayFilters }}" as="f" hint-placeholder-count="5">
+          <button onClick="{{ f.go }}" style="border-radius:999px;padding:10px 18px;cursor:pointer;font:700 12px/1 Lato,sans-serif;letter-spacing:.05em;background:{{ f.bg }};color:{{ f.fg }};border:1px solid {{ f.bd }}">{{ f.label }}</button>
+        </sc-for>
+        <span style="margin-left:auto;font:400 14px/1 Lato,sans-serif;color:#8A7C6C">{{ groupCount }}</span>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:20px;margin-top:20px">
+        <sc-for list="{{ groups }}" as="g" hint-placeholder-count="6">
+          <div style="background:#FFFDF9;border:1px solid #E7DCC9;border-radius:18px;padding:30px;display:flex;flex-direction:column;gap:12px">
+            <div style="display:flex;justify-content:space-between;align-items:baseline;gap:12px">
+              <p style="font:700 10px/1 Lato,sans-serif;letter-spacing:.16em;text-transform:uppercase;color:var(--accent-alt,#4F7A5A);margin:0">{{ g.kind }}</p>
+              <p style="font:400 13px/1 Lato,sans-serif;color:{{ g.spotsColor }};margin:0">{{ g.spots }}</p>
+            </div>
+            <h3 style="font:600 22px/1.24 Lora,Georgia,serif;margin:0;letter-spacing:-.01em">{{ g.title }}</h3>
+            <p style="font:400 15px/1.6 Lato,sans-serif;color:#6B6058;margin:0;flex:1;text-wrap:pretty">{{ g.body }}</p>
+            <div style="border-top:1px solid #EDE3D3;padding-top:16px;display:flex;justify-content:space-between;align-items:center;gap:12px">
+              <p style="font:400 14px/1.5 Lato,sans-serif;color:#8A7C6C;margin:0">{{ g.when }}<br>{{ g.where }}</p>
+              <button style="background:var(--accent,#A8613F);border:none;border-radius:999px;padding:12px 22px;cursor:pointer;font:700 12px/1 Lato,sans-serif;letter-spacing:.06em;color:#FFF9F0;flex:none" style-hover="filter:brightness(.92)">Join</button>
+            </div>
+          </div>
+        </sc-for>
+      </div>
+    </section>
+
+    <section style="max-width:1320px;margin:0 auto;padding:0 clamp(20px,4vw,56px) clamp(64px,7vw,110px)">
+      <div style="background:#F1E9DB;border:1px solid #E4D8C4;border-radius:22px;padding:clamp(30px,4vw,52px);display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:clamp(28px,4vw,56px);align-items:center">
+        <div>
+          <h2 style="font:400 clamp(26px,2.8vw,36px)/1.15 Lora,Georgia,serif;letter-spacing:-.02em;margin:0">Not sure where you'd fit?</h2>
+          <p style="font:400 17px/1.65 Lato,sans-serif;color:#6B6058;margin:16px 0 0;max-width:48ch">Tell us your life stage and what part of town you're in. Someone will call you — an actual person, within a week.</p>
+        </div>
+        <div style="display:grid;gap:12px">
+          <input placeholder="Your name" style="background:#FFFDF9;border:1px solid #DED2BC;border-radius:10px;padding:15px 18px;font:400 16px/1 Lato,sans-serif;color:#3A322B">
+          <input placeholder="Email or phone" style="background:#FFFDF9;border:1px solid #DED2BC;border-radius:10px;padding:15px 18px;font:400 16px/1 Lato,sans-serif;color:#3A322B">
+          <button style="background:#3A322B;border:none;border-radius:10px;padding:16px;cursor:pointer;font:700 13px/1 Lato,sans-serif;letter-spacing:.06em;color:#F4EDE2" style-hover="background:#241E1A">Have someone reach out</button>
+        </div>
+      </div>
+    </section>
+  </main>
+  </sc-if>
+
+  <sc-if value="{{ isMinistries }}">
+  <main data-screen-label="Ministries">
+    <section style="max-width:1320px;margin:0 auto;padding:clamp(48px,6vw,88px) clamp(20px,4vw,56px) clamp(36px,4vw,52px);max-width:880px">
+      <p style="font:700 11px/1 Lato,sans-serif;letter-spacing:.2em;text-transform:uppercase;color:var(--accent,#A8613F);margin:0 0 24px">Ministries</p>
+      <h1 style="font:400 clamp(38px,4.6vw,66px)/1.06 Lora,Georgia,serif;letter-spacing:-.025em;margin:0;text-wrap:balance">A place for every age, and a job for every member.</h1>
+    </section>
+    <section style="max-width:1320px;margin:0 auto;padding:0 clamp(20px,4vw,56px) clamp(64px,7vw,110px)">
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:clamp(20px,3vw,36px)">
+        <sc-for list="{{ ministries }}" as="m" hint-placeholder-count="6">
+          <div style="background:#FFFDF9;border:1px solid #E7DCC9;border-radius:20px;overflow:hidden;display:flex;flex-direction:column">
+            <div style="background:repeating-linear-gradient(135deg,#EFE6D6 0 9px,#E7DCC8 9px 18px);aspect-ratio:3/2;display:grid;place-items:center;border-bottom:1px solid #E7DCC9">
+              <span style="font:400 10px/1.5 ui-monospace,Menlo,monospace;letter-spacing:.1em;text-transform:uppercase;color:#8B7E6E">{{ m.slot }}</span>
+            </div>
+            <div style="padding:30px;display:flex;flex-direction:column;gap:12px;flex:1">
+              <p style="font:700 10px/1 Lato,sans-serif;letter-spacing:.16em;text-transform:uppercase;color:var(--accent-alt,#4F7A5A);margin:0">{{ m.ages }}</p>
+              <h3 style="font:600 24px/1.2 Lora,Georgia,serif;margin:0;letter-spacing:-.015em">{{ m.title }}</h3>
+              <p style="font:400 16px/1.62 Lato,sans-serif;color:#6B6058;margin:0;flex:1;text-wrap:pretty">{{ m.body }}</p>
+              
+            </div>
+          </div>
+        </sc-for>
+      </div>
+    </section>
+  </main>
+  </sc-if>
+
+  <sc-if value="{{ isGiving }}">
+  <main data-screen-label="Giving">
+    <section style="max-width:1320px;margin:0 auto;padding:clamp(48px,6vw,88px) clamp(20px,4vw,56px) clamp(56px,6vw,88px);display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:clamp(32px,5vw,72px);align-items:start">
+      <div>
+        <p style="font:700 11px/1 Lato,sans-serif;letter-spacing:.2em;text-transform:uppercase;color:var(--accent,#A8613F);margin:0 0 24px">Giving</p>
+        
+        <p style="font:400 17px/1.65 Lato,sans-serif;color:#6B6058;margin:24px 0 0;max-width:48ch">Giving at MBC funds the ordinary work of the church — the ministers, the building, the meals on Wednesday, and the missionaries we send. Every dollar is reported to the congregation.</p>
+        <div style="margin-top:36px;border-top:1px solid #E4D8C4">
+          <sc-for list="{{ givingWays }}" as="w" hint-placeholder-count="3">
+            <div style="padding:22px 0;border-bottom:1px solid #E4D8C4">
+              <h3 style="font:600 18px/1.3 Lora,Georgia,serif;margin:0 0 8px">{{ w.title }}</h3>
+              <p style="font:400 15px/1.6 Lato,sans-serif;color:#6B6058;margin:0">{{ w.body }}</p>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+      <div style="background:#FFFDF9;border:1px solid #E7DCC9;border-radius:22px;padding:clamp(28px,3.5vw,44px)">
+        <h2 style="font:400 26px/1.2 Lora,Georgia,serif;letter-spacing:-.015em;margin:0 0 26px">Give online</h2>
+        <p style="font:700 11px/1 Lato,sans-serif;letter-spacing:.16em;text-transform:uppercase;color:#9A8B7B;margin:0 0 12px">Amount</p>
+        <div style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:20px">
+          <sc-for list="{{ amounts }}" as="a" hint-placeholder-count="4">
+            <button onClick="{{ a.go }}" style="border-radius:999px;padding:13px 22px;cursor:pointer;font:700 14px/1 Lato,sans-serif;background:{{ a.bg }};color:{{ a.fg }};border:1px solid {{ a.bd }}">{{ a.label }}</button>
+          </sc-for>
+        </div>
+        <p style="font:700 11px/1 Lato,sans-serif;letter-spacing:.16em;text-transform:uppercase;color:#9A8B7B;margin:0 0 12px">Designation</p>
+        <div style="display:grid;gap:10px;margin-bottom:24px">
+          <sc-for list="{{ funds }}" as="f" hint-placeholder-count="3">
+            <label style="display:flex;align-items:center;gap:12px;padding:15px 18px;border:1px solid #DED2BC;border-radius:10px;cursor:pointer;font:400 16px/1 Lato,sans-serif;color:#3A322B" style-hover="border-color:#C6B69E;background:#FBF7EF">
+              <span style="width:16px;height:16px;border-radius:999px;border:1px solid #C6B69E;display:inline-block;flex:none"></span>{{ f }}
+            </label>
+          </sc-for>
+        </div>
+        <div style="display:flex;gap:10px;margin-bottom:24px">
+          <sc-for list="{{ freq }}" as="f" hint-placeholder-count="2">
+            <button onClick="{{ f.go }}" style="flex:1;border-radius:10px;padding:14px;cursor:pointer;font:700 13px/1 Lato,sans-serif;letter-spacing:.04em;background:{{ f.bg }};color:{{ f.fg }};border:1px solid {{ f.bd }}">{{ f.label }}</button>
+          </sc-for>
+        </div>
+        <button style="width:100%;background:var(--accent,#A8613F);border:none;border-radius:10px;padding:18px;cursor:pointer;font:700 14px/1 Lato,sans-serif;letter-spacing:.05em;color:#FFF9F0" style-hover="filter:brightness(.92)">Continue to payment</button>
+        <p style="font:400 13px/1.5 Lato,sans-serif;color:#9A8B7B;margin:16px 0 0;text-align:center">Secure processing. A receipt is emailed immediately, and a year-end statement in January.</p>
+      </div>
+    </section>
+    <section style="max-width:1320px;margin:0 auto;padding:0 clamp(20px,4vw,56px) clamp(64px,7vw,110px)">
+      <div style="background:#3A322B;color:#F4EDE2;border-radius:22px;padding:clamp(30px,4vw,52px);display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:clamp(24px,3vw,48px)">
+        <sc-for list="{{ stewardship }}" as="s" hint-placeholder-count="4">
+          <div>
+            <p style="font:400 clamp(30px,3vw,42px)/1 Lora,Georgia,serif;margin:0 0 12px;color:#DBAE84">{{ s.stat }}</p>
+            <p style="font:400 15px/1.55 Lato,sans-serif;color:#C8BAA8;margin:0">{{ s.label }}</p>
+          </div>
+        </sc-for>
+      </div>
+    </section>
+  </main>
+  </sc-if>
+
+  <sc-if value="{{ isHubOut }}">
+  <main data-screen-label="Member Hub — signed out" style="max-width:1320px;margin:0 auto;padding:clamp(48px,6vw,96px) clamp(20px,4vw,56px) clamp(64px,7vw,110px);display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:clamp(32px,5vw,72px);align-items:center">
+    <div>
+      <p style="font:700 11px/1 Lato,sans-serif;letter-spacing:.2em;text-transform:uppercase;color:var(--accent,#A8613F);margin:0 0 24px">Member Hub</p>
+      <h1 style="font:400 clamp(36px,4.4vw,60px)/1.07 Lora,Georgia,serif;letter-spacing:-.025em;margin:0;text-wrap:balance">Your church info, gathered in one place.</h1>
+      <p style="font:300 19px/1.62 Lato,sans-serif;color:#6B6058;margin:24px 0 0;max-width:50ch">Sermon notes and the passage of the week, your group and serve schedule, reading plans, the prayer wall, the directory, and the whole study library.</p>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:1px;background:#E4D8C4;border:1px solid #E4D8C4;border-radius:14px;overflow:hidden;margin-top:36px">
+        <sc-for list="{{ hubTeaser }}" as="h" hint-placeholder-count="6">
+          <div style="background:#FFFDF9;padding:20px">
+            <p style="font:400 15px/1.4 Lato,sans-serif;color:#4A4139;margin:0">{{ h }}</p>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+    <div style="background:#FFFDF9;border:1px solid #E7DCC9;border-radius:22px;padding:clamp(30px,3.5vw,48px);max-width:460px;width:100%;justify-self:center">
+      <img src="assets/mbc-mark.png" alt="" style="width:44px;height:44px;object-fit:contain;margin-bottom:24px">
+      <h2 style="font:400 27px/1.2 Lora,Georgia,serif;letter-spacing:-.015em;margin:0 0 8px">Sign in</h2>
+      <p style="font:400 15px/1.6 Lato,sans-serif;color:#8A7C6C;margin:0 0 28px">Use the email you gave the church office.</p>
+      <div style="display:grid;gap:12px">
+        <input placeholder="you@example.com" style="background:#FBF7EF;border:1px solid #DED2BC;border-radius:10px;padding:16px 18px;font:400 16px/1 Lato,sans-serif;color:#3A322B">
+        <input placeholder="Password" type="password" style="background:#FBF7EF;border:1px solid #DED2BC;border-radius:10px;padding:16px 18px;font:400 16px/1 Lato,sans-serif;color:#3A322B">
+        <button onClick="{{ signIn }}" style="background:var(--accent,#A8613F);border:none;border-radius:10px;padding:17px;cursor:pointer;font:700 14px/1 Lato,sans-serif;letter-spacing:.05em;color:#FFF9F0;margin-top:6px" style-hover="filter:brightness(.92)">Sign in</button>
+      </div>
+      <div style="display:flex;justify-content:space-between;margin-top:22px;font:400 14px/1 Lato,sans-serif">
+        <a href="#reset">Forgot password</a>
+        <a href="#new">Request access</a>
+      </div>
+    </div>
+  </main>
+  </sc-if>
+
+  <sc-if value="{{ isHubIn }}">
+  <main data-screen-label="Member Hub — signed in" style="max-width:1320px;margin:0 auto;padding:clamp(36px,4vw,60px) clamp(20px,4vw,56px) clamp(64px,7vw,100px)">
+    <div style="display:flex;flex-wrap:wrap;gap:20px;align-items:flex-end;justify-content:space-between;margin-bottom:36px">
+      <div>
+        <p style="font:700 11px/1 Lato,sans-serif;letter-spacing:.2em;text-transform:uppercase;color:var(--accent,#A8613F);margin:0 0 16px">Sunday, September 6</p>
+        <h1 style="font:400 clamp(32px,3.6vw,48px)/1.1 Lora,Georgia,serif;letter-spacing:-.02em;margin:0">Good morning, Daniel.</h1>
+      </div>
+      <button onClick="{{ signOut }}" style="background:none;border:1px solid #CFC1AB;border-radius:999px;padding:12px 22px;cursor:pointer;font:700 12px/1 Lato,sans-serif;letter-spacing:.06em;color:#3A322B" style-hover="border-color:#3A322B;background:#F1E9DB">Sign out</button>
+    </div>
+
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:20px;margin-bottom:20px">
+      <div style="background:#3A322B;color:#F4EDE2;border-radius:20px;padding:32px;grid-column:span 2;min-width:0">
+        <p style="font:700 10px/1 Lato,sans-serif;letter-spacing:.18em;text-transform:uppercase;color:#B8A48C;margin:0 0 18px">Passage of the week</p>
+        <p style="font:400 italic clamp(20px,2.2vw,29px)/1.5 Lora,Georgia,serif;margin:0;text-wrap:pretty">“For even the Son of Man came not to be served but to serve, and to give his life as a ransom for many.”</p>
+        <p style="font:700 11px/1 Lato,sans-serif;letter-spacing:.16em;text-transform:uppercase;color:#B8A48C;margin:22px 0 0">Mark 10:45</p>
+        <div style="display:flex;flex-wrap:wrap;gap:10px;margin-top:28px">
+          <button style="background:#F4EDE2;border:none;border-radius:999px;padding:13px 24px;cursor:pointer;font:700 12px/1 Lato,sans-serif;letter-spacing:.05em;color:#3A322B" style-hover="background:#fff">Sermon notes</button>
+          <button style="background:none;border:1px solid #6B5E52;border-radius:999px;padding:13px 22px;cursor:pointer;font:700 12px/1 Lato,sans-serif;letter-spacing:.05em;color:#F4EDE2" style-hover="border-color:#F4EDE2">Group discussion guide</button>
+        </div>
+      </div>
+      <div style="background:#FFFDF9;border:1px solid #E7DCC9;border-radius:20px;padding:30px;display:flex;flex-direction:column">
+        <p style="font:700 10px/1 Lato,sans-serif;letter-spacing:.18em;text-transform:uppercase;color:var(--accent-alt,#4F7A5A);margin:0 0 18px">Next steps</p>
+        <h3 style="font:600 21px/1.25 Lora,Georgia,serif;margin:0 0 14px">You're 3 of 5 through the membership pathway.</h3>
+        <div style="display:flex;gap:5px;margin-bottom:18px">
+          <span style="flex:1;height:5px;border-radius:99px;background:var(--accent,#A8613F)"></span>
+          <span style="flex:1;height:5px;border-radius:99px;background:var(--accent,#A8613F)"></span>
+          <span style="flex:1;height:5px;border-radius:99px;background:var(--accent,#A8613F)"></span>
+          <span style="flex:1;height:5px;border-radius:99px;background:#E4D8C4"></span>
+          <span style="flex:1;height:5px;border-radius:99px;background:#E4D8C4"></span>
+        </div>
+        <p style="font:400 15px/1.6 Lato,sans-serif;color:#6B6058;margin:0 0 20px;flex:1">Up next: the Serve interview with Spencer Ray.</p>
+        <button style="background:#3A322B;border:none;border-radius:10px;padding:14px;cursor:pointer;font:700 12px/1 Lato,sans-serif;letter-spacing:.06em;color:#F4EDE2" style-hover="background:#241E1A">Schedule it</button>
+      </div>
+    </div>
+
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px">
+      <sc-for list="{{ hubCards }}" as="c" hint-placeholder-count="8">
+        <div style="background:#FFFDF9;border:1px solid #E7DCC9;border-radius:20px;padding:28px;display:flex;flex-direction:column;gap:14px;min-height:220px" style-hover="border-color:#D2C2A8">
+          <div style="display:flex;align-items:baseline;justify-content:space-between;gap:12px">
+            <p style="font:700 10px/1 Lato,sans-serif;letter-spacing:.18em;text-transform:uppercase;color:var(--accent,#A8613F);margin:0">{{ c.kicker }}</p>
+            <p style="font:400 13px/1 Lato,sans-serif;color:#A2937F;margin:0">{{ c.meta }}</p>
+          </div>
+          <h3 style="font:600 20px/1.28 Lora,Georgia,serif;margin:0;letter-spacing:-.01em">{{ c.title }}</h3>
+          <div style="flex:1">
+            <sc-for list="{{ c.rows }}" as="r" hint-placeholder-count="3">
+              <p style="font:400 15px/1.5 Lato,sans-serif;color:#6B6058;margin:0;padding:9px 0;border-top:1px solid #EDE3D3">{{ r }}</p>
+            </sc-for>
+          </div>
+          <button style="align-self:flex-start;background:none;border:none;padding:0 0 4px;cursor:pointer;font:700 11px/1 Lato,sans-serif;letter-spacing:.12em;text-transform:uppercase;color:var(--accent,#A8613F);border-bottom:1px solid #E0D0B8">{{ c.cta }}</button>
+        </div>
+      </sc-for>
+    </div>
+  </main>
+  </sc-if>
+
+  <footer data-mbc-chrome="1" style="background:#2B2521;color:#C8BAA8">
+    <div style="max-width:1320px;margin:0 auto;padding:clamp(48px,5vw,80px) clamp(20px,4vw,56px) 32px;display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:clamp(28px,4vw,56px)">
+      <div>
+        <img src="assets/mbc-mark.png" alt="Memorial Baptist Church" style="width:62px;height:62px;object-fit:contain;filter:brightness(0) invert(1);opacity:.9;margin-bottom:22px">
+        <p style="font:400 16px/1.6 Lato,sans-serif;margin:0;color:#E4D9C8">2800 S. Yale Ave.<br>Tulsa, OK 74114</p>
+        <p style="font:400 16px/1.6 Lato,sans-serif;margin:14px 0 0"><a href="tel:19187440079" style="color:#DBAE84">918.744.0079</a><br><a href="mailto:staff@memorialbaptist.com" style="color:#DBAE84">staff@memorialbaptist.com</a></p>
+      </div>
+      <sc-for list="{{ footerCols }}" as="col" hint-placeholder-count="3">
+        <div>
+          <p style="font:700 10px/1 Lato,sans-serif;letter-spacing:.2em;text-transform:uppercase;color:#8A7C6C;margin:0 0 20px">{{ col.head }}</p>
+          <div style="display:flex;flex-direction:column;gap:11px;align-items:flex-start">
+            <sc-for list="{{ col.items }}" as="it" hint-placeholder-count="4">
+              <button onClick="{{ it.go }}" style="background:none;border:none;padding:0;cursor:pointer;font:400 16px/1.3 Lato,sans-serif;color:#C8BAA8;text-align:left" style-hover="color:#F4EDE2">{{ it.label }}</button>
+            </sc-for>
+          </div>
+        </div>
+      </sc-for>
+      <div>
+        <p style="font:700 10px/1 Lato,sans-serif;letter-spacing:.2em;text-transform:uppercase;color:#8A7C6C;margin:0 0 20px">Gathering times</p>
+        <div style="display:flex;flex-direction:column;gap:11px">
+          <p style="font:400 16px/1.35 Lato,sans-serif;margin:0;color:#E4D9C8">Sun Bible Study — 9:15 AM</p>
+          <p style="font:400 16px/1.35 Lato,sans-serif;margin:0;color:#E4D9C8">Sun Worship — 10:30 AM</p>
+          <p style="font:400 16px/1.35 Lato,sans-serif;margin:0;color:#E4D9C8">Wed Bible Study — 6:00 PM</p>
+          <p style="font:400 16px/1.35 Lato,sans-serif;margin:0;color:#E4D9C8">Wed Dinner — 7:00 PM</p>
+        </div>
+      </div>
+    </div>
+    <div style="max-width:1320px;margin:0 auto;padding:24px clamp(20px,4vw,56px) 44px;border-top:1px solid #453C35;display:flex;flex-wrap:wrap;gap:16px;justify-content:space-between">
+      <p style="font:400 13px/1 Lato,sans-serif;color:#8A7C6C;margin:0">© 2026 Memorial Baptist Church · A Southern Baptist congregation</p>
+      <p style="font:400 13px/1 Lato,sans-serif;color:#8A7C6C;margin:0">For the glory of God &amp; the good of all people</p>
+      <button data-admin-ui="1" onClick="{{ openAdmin }}" style="background:none;border:1px solid #453C35;border-radius:8px;padding:7px 13px;cursor:pointer;font:700 10px/1 Lato,sans-serif;letter-spacing:.16em;text-transform:uppercase;color:#8A7C6C" style-hover="border-color:#6E6058;color:#C8BAA8">Admin sign in</button>
+    </div>
+  </footer>
+
+  <sc-if value="{{ adminOn }}" hint-placeholder-val="{{ false }}">
+  <div data-admin-ui="1">
+    <div style="height:76px"></div>
+    <div style="position:fixed;left:0;right:0;bottom:0;z-index:200;background:#2B2521;border-top:1px solid #4A4139;box-shadow:0 -10px 34px rgba(43,37,33,.26);display:flex;flex-wrap:wrap;align-items:center;gap:12px;padding:13px clamp(14px,3vw,28px)">
+      <span style="font:700 10px/1 Lato,sans-serif;letter-spacing:.18em;text-transform:uppercase;color:#DBAE84;flex:none">Admin mode</span>
+      <span style="font:400 14px/1.35 Lato,sans-serif;color:#C8BAA8;margin-right:auto;min-width:180px">{{ adminHint }}</span>
+      <select value="{{ pageValue }}" onChange="{{ setPage }}" style="background:#3A322B;color:#F4EDE2;border:1px solid #55493F;border-radius:8px;padding:9px 11px;font:400 13px/1 Lato,sans-serif;cursor:pointer">
+        <sc-for list="{{ pageOpts }}" as="o" hint-placeholder-count="10">
+          <option value="{{ o.key }}">{{ o.label }}</option>
+        </sc-for>
+      </select>
+      <button onClick="{{ toggleEdit }}" style="background:{{ editBg }};color:{{ editFg }};border:none;border-radius:8px;padding:10px 18px;cursor:pointer;font:700 11px/1 Lato,sans-serif;letter-spacing:.1em;text-transform:uppercase">{{ editLabel }}</button>
+      <button onClick="{{ exportContent }}" style="background:none;border:1px solid #55493F;border-radius:8px;padding:10px 14px;cursor:pointer;font:700 11px/1 Lato,sans-serif;letter-spacing:.08em;text-transform:uppercase;color:#C8BAA8">Export</button>
+      <button onClick="{{ importContent }}" style="background:none;border:1px solid #55493F;border-radius:8px;padding:10px 14px;cursor:pointer;font:700 11px/1 Lato,sans-serif;letter-spacing:.08em;text-transform:uppercase;color:#C8BAA8">Import</button>
+      <button onClick="{{ resetContent }}" style="background:none;border:1px solid #55493F;border-radius:8px;padding:10px 14px;cursor:pointer;font:700 11px/1 Lato,sans-serif;letter-spacing:.08em;text-transform:uppercase;color:#C8BAA8">Reset</button>
+      <button onClick="{{ adminOut }}" style="background:none;border:none;padding:10px 4px;cursor:pointer;font:400 13px/1 Lato,sans-serif;color:#8A7C6C;text-decoration:underline">Sign out</button>
+    </div>
+  </div>
+  </sc-if>
+
+  <sc-if value="{{ adminModal }}" hint-placeholder-val="{{ false }}">
+  <div data-admin-ui="1" style="position:fixed;inset:0;z-index:210;background:rgba(43,37,33,.58);backdrop-filter:blur(3px);display:grid;place-items:center;padding:24px">
+    <div style="background:#FFFDF9;border:1px solid #E7DCC9;border-radius:22px;padding:clamp(26px,4vw,38px);width:100%;max-width:390px">
+      <img src="assets/mbc-mark.png" alt="" style="width:40px;height:40px;object-fit:contain;margin-bottom:20px">
+      <h3 style="font:400 26px/1.2 Lora,Georgia,serif;letter-spacing:-.015em;margin:0 0 8px;color:#3A322B">Site administration</h3>
+      <p style="font:400 15px/1.6 Lato,sans-serif;color:#8A7C6C;margin:0 0 24px">Sign in to edit any text or swap any photo, right on the page.</p>
+      <input ref="{{ passRef }}" onKeyDown="{{ passKey }}" type="password" placeholder="Passcode" style="width:100%;background:#FFF;border:1px solid #DCCFB9;border-radius:10px;padding:14px 15px;font:400 16px/1 Lato,sans-serif;color:#3A322B;margin-bottom:14px">
+      <sc-if value="{{ adminErr }}" hint-placeholder-val="{{ false }}">
+        <p style="font:400 14px/1.4 Lato,sans-serif;color:#A8342A;margin:0 0 14px">That passcode doesn’t match. Try again.</p>
+      </sc-if>
+      <div style="display:flex;gap:10px">
+        <button onClick="{{ adminLogin }}" style="flex:1;background:var(--accent,#A8613F);border:none;border-radius:10px;padding:14px;cursor:pointer;font:700 12px/1 Lato,sans-serif;letter-spacing:.06em;color:#FFF9F2">Sign in</button>
+        <button onClick="{{ closeAdmin }}" style="background:none;border:1px solid #DCCFB9;border-radius:10px;padding:14px 18px;cursor:pointer;font:700 12px/1 Lato,sans-serif;letter-spacing:.06em;color:#6B6058">Cancel</button>
+      </div>
+      <p style="font:400 12px/1.5 Lato,sans-serif;color:#A2937F;margin:18px 0 0">Demo passcode: memorial2026</p>
+    </div>
+  </div>
+  </sc-if>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;accent&quot;:{&quot;editor&quot;:&quot;color&quot;,&quot;default&quot;:&quot;#A8613F&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Brand&quot;,&quot;options&quot;:[&quot;#A8613F&quot;,&quot;#8A4C2E&quot;,&quot;#4F7A5A&quot;,&quot;#2F4858&quot;]},&quot;accentAlt&quot;:{&quot;editor&quot;:&quot;color&quot;,&quot;default&quot;:&quot;#4F7A5A&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Brand&quot;,&quot;options&quot;:[&quot;#4F7A5A&quot;,&quot;#7A6A4A&quot;,&quot;#8C5A2B&quot;,&quot;#5A6478&quot;]},&quot;ground&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;Cream&quot;,&quot;Paper&quot;,&quot;Warm gray&quot;],&quot;default&quot;:&quot;Cream&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Brand&quot;},&quot;archPhotos&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Layout&quot;},&quot;signedIn&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Member Hub&quot;}}">
+class Component extends DCLogic {
+  state = { route: 'home', signedIn: false, navOpen: false, w: 1280, day: 'Any day', ev: 'All', ser: 'All', amt: '$100', fr: 'Monthly', adminOn: false, adminModal: false, adminErr: false, edit: false };
+
+  componentDidMount() {
+    if (this.props.signedIn) this.setState({ signedIn: true });
+    this._onResize = () => this.setState({ w: window.innerWidth });
+    this._onResize();
+    window.addEventListener('resize', this._onResize);
+
+    this.cms = { text: {}, img: {} };
+    try {
+      const saved = JSON.parse(localStorage.getItem('mbc-cms-v1') || '{}');
+      this.cms.text = saved.text || {};
+      this.cms.img = saved.img || {};
+      if (localStorage.getItem('mbc-admin') === '1') this.setState({ adminOn: true });
+    } catch (e) {}
+
+    this.root = document.querySelector('[data-mbc-root]');
+    this._onClick = e => {
+      if (!this.state.edit) return;
+      if (e.target.closest && e.target.closest('[data-admin-ui]')) return;
+      const t = e.target.tagName;
+      if (t === 'SELECT' || t === 'OPTION' || t === 'INPUT' || t === 'TEXTAREA') return;
+      e.preventDefault();
+      e.stopPropagation();
+      const im = e.target.closest('[data-mbc-img]');
+      if (im) this.pickImage(im);
+    };
+    this._onInput = e => {
+      const el = e.target;
+      if (!el || !el.getAttribute || el.getAttribute('contenteditable') !== 'true') return;
+      this.cms.text[this.keyFor(el)] = el.innerHTML;
+      clearTimeout(this._saveT);
+      this._saveT = setTimeout(() => this.persist(), 350);
+    };
+    document.addEventListener('click', this._onClick, true);
+    document.addEventListener('input', this._onInput, true);
+
+    this._obs = new MutationObserver(() => {
+      clearTimeout(this._applyT);
+      this._applyT = setTimeout(() => this.applyContent(), 70);
+    });
+    if (this.root) this._obs.observe(this.root, { childList: true, subtree: true });
+    this.applyContent();
+  }
+
+  componentDidUpdate() {
+    this.applyContent();
+  }
+
+  componentWillUnmount() {
+    if (this._onResize) window.removeEventListener('resize', this._onResize);
+    document.removeEventListener('click', this._onClick, true);
+    document.removeEventListener('input', this._onInput, true);
+    if (this._obs) this._obs.disconnect();
+  }
+
+  persist() {
+    try { localStorage.setItem('mbc-cms-v1', JSON.stringify(this.cms)); } catch (e) {}
+  }
+
+  keyFor(el) {
+    const parts = [];
+    let n = el;
+    while (n && n !== this.root) {
+      const p = n.parentElement;
+      if (!p) break;
+      let i = 1;
+      for (let k = 0; k < p.children.length; k++) {
+        const s = p.children[k];
+        if (s === n) break;
+        if (s.tagName === n.tagName) i++;
+      }
+      parts.unshift(n.tagName.toLowerCase() + i);
+      n = p;
+    }
+    const scope = el.closest('[data-mbc-chrome]') ? 'chrome' : this.state.route;
+    return scope + '/' + parts.join('/');
+  }
+
+  textNodes() {
+    if (!this.root) return [];
+    const sel = 'h1,h2,h3,h4,h5,h6,p,span,button,a,li,td,th,label,div,blockquote';
+    return Array.prototype.filter.call(this.root.querySelectorAll(sel), el => {
+      if (el.closest('[data-admin-ui]')) return false;
+      if (!el.textContent || !el.textContent.trim()) return false;
+      for (let i = 0; i < el.children.length; i++) if (el.children[i].tagName !== 'BR') return false;
+      return true;
+    });
+  }
+
+  imgNodes() {
+    if (!this.root) return [];
+    const out = [];
+    Array.prototype.forEach.call(this.root.querySelectorAll('img'), el => {
+      if (!el.closest('[data-admin-ui]')) out.push(el);
+    });
+    Array.prototype.forEach.call(this.root.querySelectorAll('div'), el => {
+      const s = el.getAttribute('style') || '';
+      if (s.indexOf('repeating-linear-gradient') >= 0 && !el.closest('[data-admin-ui]')) out.push(el);
+    });
+    return out;
+  }
+
+  applyImage(el, url) {
+    if (el.tagName === 'IMG') {
+      if (el.getAttribute('src') !== url) el.setAttribute('src', url);
+      return;
+    }
+    if (el.dataset.mbcPhoto !== '1') {
+      el.style.backgroundImage = 'url("' + url + '")';
+      el.style.backgroundSize = 'cover';
+      el.style.backgroundPosition = 'center';
+      el.style.backgroundRepeat = 'no-repeat';
+      el.dataset.mbcPhoto = '1';
+    }
+    Array.prototype.forEach.call(el.children, c => { if (c.tagName === 'SPAN') c.style.display = 'none'; });
+  }
+
+  applyContent() {
+    if (!this.root || !this.cms) return;
+    this.textNodes().forEach(el => {
+      const v = this.cms.text[this.keyFor(el)];
+      if (v == null || el === document.activeElement) return;
+      if (el.innerHTML !== v) el.innerHTML = v;
+    });
+    this.imgNodes().forEach(el => {
+      const v = this.cms.img[this.keyFor(el)];
+      if (v) this.applyImage(el, v);
+    });
+    if (this.state.edit) this.markEditable(); else this.unmarkEditable();
+  }
+
+  markEditable() {
+    this.textNodes().forEach(el => {
+      if (el.dataset.mbcEdit === '1') return;
+      el.dataset.mbcEdit = '1';
+      el.setAttribute('contenteditable', 'true');
+      el.style.outline = '1px dashed rgba(168,97,63,.5)';
+      el.style.outlineOffset = '2px';
+      el.style.borderRadius = el.style.borderRadius || '2px';
+    });
+    this.imgNodes().forEach(el => {
+      if (el.dataset.mbcImg === '1') return;
+      el.dataset.mbcImg = '1';
+      el.style.outline = '2px dashed rgba(168,97,63,.75)';
+      el.style.outlineOffset = '2px';
+      el.style.cursor = 'pointer';
+      el.title = 'Click to replace this image';
+    });
+  }
+
+  unmarkEditable() {
+    if (!this.root) return;
+    Array.prototype.forEach.call(this.root.querySelectorAll('[data-mbc-edit]'), el => {
+      el.removeAttribute('contenteditable');
+      el.removeAttribute('data-mbc-edit');
+      el.style.outline = '';
+      el.style.outlineOffset = '';
+    });
+    Array.prototype.forEach.call(this.root.querySelectorAll('[data-mbc-img]'), el => {
+      el.removeAttribute('data-mbc-img');
+      el.removeAttribute('title');
+      el.style.outline = '';
+      el.style.outlineOffset = '';
+      el.style.cursor = '';
+    });
+  }
+
+  pickImage(el) {
+    const key = this.keyFor(el);
+    const inp = document.createElement('input');
+    inp.type = 'file';
+    inp.accept = 'image/*';
+    inp.onchange = () => {
+      const f = inp.files && inp.files[0];
+      if (!f) return;
+      const fr = new FileReader();
+      fr.onload = () => {
+        this.cms.img[key] = fr.result;
+        this.persist();
+        this.applyImage(el, fr.result);
+      };
+      fr.readAsDataURL(f);
+    };
+    inp.click();
+  }
+
+  openAdmin = () => this.setState({ adminModal: true, adminErr: false });
+  closeAdmin = () => this.setState({ adminModal: false, adminErr: false });
+
+  adminLogin = () => {
+    const v = ((this._pass && this._pass.value) || '').trim().toLowerCase();
+    if (v === 'memorial2026') {
+      try { localStorage.setItem('mbc-admin', '1'); } catch (e) {}
+      this.setState({ adminOn: true, adminModal: false, adminErr: false });
+    } else {
+      this.setState({ adminErr: true });
+    }
+  };
+
+  adminOut = () => {
+    try { localStorage.removeItem('mbc-admin'); } catch (e) {}
+    this.unmarkEditable();
+    this.setState({ adminOn: false, edit: false, adminModal: false });
+  };
+
+  toggleEdit = () => {
+    const next = !this.state.edit;
+    if (!next) {
+      this.persist();
+      this.unmarkEditable();
+    }
+    this.setState({ edit: next });
+  };
+
+  exportContent = () => {
+    const blob = new Blob([JSON.stringify(this.cms, null, 2)], { type: 'application/json' });
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = 'mbc-site-content.json';
+    a.click();
+  };
+
+  importContent = () => {
+    const inp = document.createElement('input');
+    inp.type = 'file';
+    inp.accept = 'application/json,.json';
+    inp.onchange = () => {
+      const f = inp.files && inp.files[0];
+      if (!f) return;
+      const fr = new FileReader();
+      fr.onload = () => {
+        try {
+          const d = JSON.parse(fr.result);
+          this.cms.text = Object.assign(this.cms.text, d.text || {});
+          this.cms.img = Object.assign(this.cms.img, d.img || {});
+          this.persist();
+          window.location.reload();
+        } catch (e) { window.alert('That file could not be read as site content.'); }
+      };
+      fr.readAsText(f);
+    };
+    inp.click();
+  };
+
+  resetContent = () => {
+    if (!window.confirm('Restore all original text and images? Your edits in this browser will be discarded.')) return;
+    try { localStorage.removeItem('mbc-cms-v1'); } catch (e) {}
+    window.location.reload();
+  };
+
+  go(r) {
+    return () => {
+      this.setState({ route: r, navOpen: false });
+      try { window.scrollTo(0, 0); } catch (e) {}
+    };
+  }
+
+  pill(active) {
+    return active
+      ? { bg: '#3A322B', fg: '#F4EDE2', bd: '#3A322B' }
+      : { bg: 'transparent', fg: '#6B6058', bd: '#D6C9B4' };
+  }
+
+  chips(list, key) {
+    return list.map(label => {
+      const p = this.pill(this.state[key] === label);
+      return { label, go: () => this.setState({ [key]: label }), bg: p.bg, fg: p.fg, bd: p.bd };
+    });
+  }
+
+  renderVals() {
+    const r = this.state.route;
+    const inHub = r === 'hub';
+
+    const nav = [
+      ["I'm New", 'visit'], ['About', 'about'], ['Sermons', 'sermons'],
+      ['Events', 'events'], ['Connect', 'groups'], ['Ministries', 'ministries']
+    ].map(([label, key]) => ({
+      label, key, go: this.go(key),
+      color: r === key ? '#A8613F' : '#3A322B',
+      rule: r === key ? '#A8613F' : 'transparent'
+    }));
+
+    const values = [
+      { name: 'Worship', verse: '“Don\u2019t neglect to meet together, as is the habit of some, but encourage one another all the more as you see the Day drawing near.”', ref: 'Hebrews 10:25' },
+      { name: 'Learn & Tell', verse: '“Go and make disciples of all nations\u2026 teaching them to observe all that I have commanded you.”', ref: 'Matthew 28:19\u201320' },
+      { name: 'Pray', verse: '“Rejoice always, pray without ceasing, give thanks in all circumstances; for this is the will of God in Christ Jesus for you.”', ref: '1 Thessalonians 5:16\u201318' },
+      { name: 'Serve', verse: '“To each is given a manifestation of the Spirit for the common good.”', ref: '1 Corinthians 12:7' },
+      { name: 'Give', verse: '“Remember the words of the Lord Jesus, how He Himself said, \u2018It is more blessed to give than to receive.\u2019”', ref: 'Acts 20:35' }
+    ];
+
+    const staff = [
+      { name: 'Jacob Bice', role: 'Pastor', bio: 'Preaches on Sunday mornings. Currently walking the church through the Gospel of Mark.' },
+      { name: 'Spencer Ray', role: 'Associate Pastor', bio: 'Oversees groups, membership, and the next-steps pathway.' },
+      { name: 'Andrew McGuire', role: 'Campus Minister', bio: 'Works with students at the university and leads MBC Students.' },
+      { name: 'Rickey Weatherford', role: 'Music Minister', bio: 'Leads the congregation in singing and directs the choir.' },
+      { name: 'Michelle Davis', role: 'Preschool Minister', bio: 'Runs the preschool halls and trains the Sunday volunteers.' },
+      { name: 'Yonas Clarke', role: 'Church Host', bio: 'The first face most guests meet. Handles facilities and hospitality.' },
+      { name: 'Sherri Kitchen', role: 'Office Manager', bio: 'Keeps the calendar, the bulletin, and the church office running.' },
+      { name: 'Jocie Miser', role: 'Financial Administrator', bio: 'Manages giving records, the budget, and year-end statements.' }
+    ];
+
+    const allSermons = [
+      { date: 'Aug 17', title: 'The Son of Man Came to Serve', ref: 'Mark 10:35\u201345', speaker: 'Jacob Bice', series: 'The Gospel of Mark', len: '38 min', s: 'Mark' },
+      { date: 'Aug 10', title: 'What Do You Want Me to Do for You?', ref: 'Mark 10:46\u201352', speaker: 'Jacob Bice', series: 'The Gospel of Mark', len: '35 min', s: 'Mark' },
+      { date: 'Aug 3', title: 'The Cost and the Reward', ref: 'Mark 10:17\u201331', speaker: 'Spencer Ray', series: 'The Gospel of Mark', len: '41 min', s: 'Mark' },
+      { date: 'Jul 27', title: 'A Household Ordered by Grace', ref: 'Ephesians 5:22\u20136:4', speaker: 'Jacob Bice', series: 'Summer in Ephesians', len: '36 min', s: 'Summer' },
+      { date: 'Jul 20', title: 'Put On the Whole Armor', ref: 'Ephesians 6:10\u201320', speaker: 'Andrew McGuire', series: 'Summer in Ephesians', len: '33 min', s: 'Summer' },
+      { date: 'Jul 13', title: 'Rest for the Weary', ref: 'Matthew 11:28\u201330', speaker: 'Jacob Bice', series: 'Our Anchor Passage', len: '39 min', s: 'Anchor' }
+    ];
+    const serFilters = ['All', 'The Gospel of Mark', 'Summer in Ephesians', 'Our Anchor Passage'];
+    const sermons = this.state.ser === 'All' ? allSermons : allSermons.filter(x => x.series === this.state.ser);
+
+    const allEvents = [
+      { mon: 'Sep', day: '02', cat: 'Weekly', title: 'Wednesday Night Dinner & Bible Study', body: 'Dinner in the fellowship hall, then study by age group. Bring a friend; no sign-up needed.', when: '6:00 PM study · 7:00 PM dinner', where: 'Fellowship Hall', cta: 'Details' },
+      { mon: 'Sep', day: '06', cat: 'Worship', title: 'Lord\u2019s Supper & Baptism Sunday', body: 'We share the table together and celebrate three baptisms in the morning service.', when: '10:30 AM', where: 'Sanctuary', cta: 'Details' },
+      { mon: 'Sep', day: '12', cat: 'Serve', title: 'Serve Tulsa Saturday', body: 'Yard work and light repair for neighbors on the streets around the church. Teams of four.', when: '8:00 AM \u2013 12:00 PM', where: 'Meet in north lot', cta: 'Sign up' },
+      { mon: 'Sep', day: '18', cat: 'Students', title: 'MBC Students Fall Retreat', body: 'Two nights at Falls Creek for 6th\u201312th grade. Cost covers lodging, meals, and transport.', when: 'Fri 4 PM \u2013 Sun 2 PM', where: 'Falls Creek', cta: 'Register' },
+      { mon: 'Sep', day: '22', cat: 'Senior Adults', title: 'Senior Adult Luncheon', body: 'Lunch, singing, and a short devotional from Rickey. Rides available on request.', when: '11:30 AM', where: 'Fellowship Hall', cta: 'RSVP' },
+      { mon: 'Sep', day: '28', cat: 'Church Family', title: 'Quarterly Member Meeting', body: 'Budget report, ministry updates, and a vote on the 2027 missions commitment.', when: '6:00 PM', where: 'Sanctuary', cta: 'Agenda' }
+    ];
+    const evFilters = ['All', 'Worship', 'Serve', 'Students', 'Senior Adults', 'Church Family'];
+    const events = this.state.ev === 'All' ? allEvents : allEvents.filter(x => x.cat === this.state.ev);
+
+    const allGroups = [
+      { kind: 'Community Group', title: 'Midtown Couples', body: 'Young and middle-aged couples working through the Sunday sermon passage over dessert.', when: 'Tuesdays, 6:30 PM', where: 'Hosted near 31st & Harvard', spots: '4 spots', d: 'Tuesday' },
+      { kind: 'Sunday Class', title: 'The Berean Class', body: 'A long-running class for adults 55+. Book-by-book study, currently in 1 Peter.', when: 'Sundays, 9:15 AM', where: 'Room 204', spots: 'Open', d: 'Sunday' },
+      { kind: 'Community Group', title: 'Young Professionals', body: 'Twenties and thirties, single or newly married. Dinner, sermon discussion, prayer.', when: 'Thursdays, 7:00 PM', where: 'Rotating homes', spots: '2 spots', d: 'Thursday' },
+      { kind: 'Sunday Class', title: 'Families with Young Children', body: 'Parents of birth\u20135th grade. This fall: family worship and discipleship at home.', when: 'Sundays, 9:15 AM', where: 'Room 118', spots: 'Open', d: 'Sunday' },
+      { kind: 'Community Group', title: 'Men\u2019s Study \u2014 East Side', body: 'Early mornings, strong coffee, and the New City Catechism alongside the sermon text.', when: 'Wednesdays, 6:00 AM', where: 'Hosted near 41st & Sheridan', spots: 'Full \u2014 waitlist', d: 'Wednesday' },
+      { kind: 'Community Group', title: 'Women\u2019s Study \u2014 Midtown', body: 'A weekday group for women in every season, with childcare provided on site.', when: 'Tuesdays, 9:30 AM', where: 'Church, Room 210', spots: '6 spots', d: 'Tuesday' }
+    ];
+    const dayList = ['Any day', 'Sunday', 'Tuesday', 'Wednesday', 'Thursday'];
+    const groupsFiltered = this.state.day === 'Any day' ? allGroups : allGroups.filter(g => g.d === this.state.day);
+    const groups = groupsFiltered.map(g => Object.assign({}, g, {
+      spotsColor: g.spots.indexOf('Full') === 0 ? '#A2937F' : '#4F7A5A'
+    }));
+
+    const hubCards = [
+      { kicker: 'Your group', meta: 'Tuesdays', title: 'Midtown Couples', rows: ['Next meeting: Sep 8, 6:30 PM', 'Bringing: dessert (you)', '9 of 12 attending'], cta: 'Group page' },
+      { kicker: 'Serve schedule', meta: '2 upcoming', title: 'You\u2019re on the rotation', rows: ['Sep 6 \u2014 Greeter, north doors', 'Sep 20 \u2014 MBC Kids, 2nd grade'], cta: 'Request a sub' },
+      { kicker: 'Reading plan', meta: 'Day 214', title: 'Mark & the Psalms', rows: ['Today: Mark 11:1\u201333', 'Today: Psalm 118', '14-day streak'], cta: 'Mark complete' },
+      { kicker: 'Calendar', meta: 'RSVPs', title: 'Coming up for you', rows: ['Sep 12 \u2014 Serve Tulsa Saturday \u2713', 'Sep 28 \u2014 Member Meeting', 'Sep 22 \u2014 Luncheon (not going)'], cta: 'Full calendar' },
+      { kicker: 'Prayer wall', meta: '6 new', title: 'Praying with the body', rows: ['The Alvarez family \u2014 surgery Thu', 'Thanksgiving: Ruth\u2019s clear scan', 'Our partners in East Asia'], cta: 'Add a request' },
+      { kicker: 'Library', meta: '38 items', title: 'Studies & guides', rows: ['New City Catechism \u2014 Q. 24', 'Family Worship: A Study Guide', '3 Circles Life Conversation Guide'], cta: 'Browse library' },
+      { kicker: 'Directory', meta: 'Opt-in', title: 'Find a church family', rows: ['412 households listed', 'Your entry: visible to members', 'Photo needed'], cta: 'Edit your entry' },
+      { kicker: 'This week', meta: 'Sep 1', title: 'The weekly digest', rows: ['Baptism Sunday \u2014 three testimonies', 'Fall classes open Sep 14', 'Nursery volunteers needed'], cta: 'Read the digest' }
+    ];
+
+    const footerNav = (label, key) => ({ label, go: this.go(key) });
+
+    return {
+      accent: this.props.accent ?? '#A8613F',
+      accentAlt: this.props.accentAlt ?? '#4F7A5A',
+      ground: (this.props.ground ?? 'Cream') === 'Paper' ? '#FDFBF7' : (this.props.ground === 'Warm gray' ? '#F1EEE8' : '#F8F3EB'),
+      photoRadius: (this.props.archPhotos ?? true) ? '260px 260px 20px 20px' : '20px',
+
+      adminOn: this.state.adminOn,
+      adminModal: this.state.adminModal,
+      adminErr: this.state.adminErr,
+      editLabel: this.state.edit ? 'Done editing' : 'Edit page',
+      editBg: this.state.edit ? '#4F7A5A' : '#A8613F',
+      editFg: '#FFF9F2',
+      adminHint: this.state.edit
+        ? 'Click any text to rewrite it · click any photo to upload a replacement · changes save as you go'
+        : 'Signed in. Choose a page, then Edit page to change text and photos.',
+      pageValue: this.state.route,
+      pageOpts: [
+        { key: 'home', label: 'Home' }, { key: 'visit', label: "I'm New" }, { key: 'about', label: 'About & Beliefs' },
+        { key: 'staff', label: 'Our Team' }, { key: 'sermons', label: 'Sermons' }, { key: 'events', label: 'Events' },
+        { key: 'groups', label: 'Connect' }, { key: 'ministries', label: 'Ministries' }, { key: 'giving', label: 'Giving' },
+        { key: 'hub', label: 'Member Hub' }
+      ],
+      setPage: e => this.go(e.target.value)(),
+      openAdmin: this.openAdmin,
+      closeAdmin: this.closeAdmin,
+      adminLogin: this.adminLogin,
+      adminOut: this.adminOut,
+      toggleEdit: this.toggleEdit,
+      exportContent: this.exportContent,
+      importContent: this.importContent,
+      resetContent: this.resetContent,
+      passRef: el => { this._pass = el; },
+      passKey: e => { if (e.key === 'Enter') this.adminLogin(); },
+
+      nav, values, staff, sermons, events, groups, hubCards,
+      wide: this.state.w >= 1040,
+      narrow: this.state.w < 1040,
+      menuOpen: this.state.w < 1040 && this.state.navOpen,
+      toggleNav: () => this.setState(s => ({ navOpen: !s.navOpen })),
+      mobileNav: nav.concat([{ label: 'Member Hub', key: 'hub', go: this.go('hub'), color: r === 'hub' ? '#A8613F' : '#3A322B', rule: 'transparent' }]),
+
+      isHome: r === 'home', isVisit: r === 'visit', isAbout: r === 'about', isStaff: r === 'staff',
+      isSermons: r === 'sermons', isEvents: r === 'events', isGroups: r === 'groups',
+      isMinistries: r === 'ministries', isGiving: r === 'giving',
+      isHubOut: inHub && !this.state.signedIn, isHubIn: inHub && this.state.signedIn,
+
+      goHome: this.go('home'), goVisit: this.go('visit'), goAbout: this.go('about'),
+      goStaff: this.go('staff'), goSermons: this.go('sermons'), goEvents: this.go('events'),
+      goGroups: this.go('groups'), goMinistries: this.go('ministries'), goGiving: this.go('giving'),
+      goHub: this.go('hub'),
+      signIn: () => this.setState({ signedIn: true }),
+      signOut: () => this.setState({ signedIn: false }),
+
+      sermonFilters: this.chips(serFilters, 'ser'),
+      eventFilters: this.chips(evFilters, 'ev'),
+      dayFilters: this.chips(dayList, 'day'),
+      amounts: this.chips(['$25', '$100', '$250', 'Other'], 'amt'),
+      freq: this.chips(['One time', 'Monthly'], 'fr'),
+      funds: ['General fund \u2014 the ordinary work of the church', 'Missions \u2014 Cooperative Program & our partners', 'Benevolence \u2014 direct help for neighbors in need'],
+      groupCount: groups.length + (groups.length === 1 ? ' group' : ' groups'),
+
+      times: [
+        { day: 'Sunday', name: 'Bible Study', time: '9:15 AM' },
+        { day: 'Sunday', name: 'Worship Service', time: '10:30 AM' },
+        { day: 'Wednesday', name: 'Bible Study', time: '6:00 PM' },
+        { day: 'Wednesday', name: 'Family Dinner', time: '7:00 PM' }
+      ],
+
+      newHere: [
+        { num: '01', title: 'What should I wear?', body: 'Whatever you own. You will see suits and you will see jeans in the same pew, and nobody is keeping score.' },
+        { num: '02', title: 'Where do my kids go?', body: 'Secure check-in for birth through 5th grade, students upstairs. Or keep them with you.' },
+        { num: '03', title: 'Will I be singled out?', body: 'No. No visitor cards, no standing up. Say hello to a host if you want to; leave quietly if you\u2019d rather.' }
+      ],
+
+      sundayFlow: [
+        { time: '9:00', title: 'Coffee in the foyer', body: 'Come early if you want to meet someone. Hosts in name tags can point you to a class or the nursery.' },
+        { time: '9:15', title: 'Bible study classes', body: 'Classes for adults, kids and students.' },
+        { time: '10:30', title: 'Worship service', body: 'Congregational singing, Scripture read aloud, prayer, and preaching' }
+      ],
+
+      faqs: [
+        { q: 'What kind of church is this?', a: 'A Southern Baptist congregation in midtown Tulsa, holding the Baptist Faith & Message (2000). Congregationally-led.' },
+        { q: 'What is the music like?', a: 'Congregational singing led by the worship team — hymns and modern songs both, chosen to be sung by everyone rather than performed.' },
+        { q: 'How long is the service?', a: 'About ninety minutes. Preaching runs thirty-five to forty minutes.' },
+        { q: '', a: '' },
+        { q: 'How do I become a member?', a: 'Talk with the pastoral staff anytime and they guide you through it.' }
+      ],
+
+      beliefs: [
+        { name: 'The Scriptures', body: 'The Bible is God\u2019s Word, truthful and sufficient, our final authority in all things.' },
+        { name: 'God', body: 'One God eternally existing as Father, Son, and Holy Spirit.' },
+        { name: 'Man', body: 'Made in God\u2019s image, fallen in sin, and precious to Him from conception.' },
+        { name: 'Salvation', body: 'By grace alone, through faith alone, in Christ alone \u2014 never by our works.' },
+        { name: 'The Church', body: 'A local body of baptized believers, governed by its members under Christ.' },
+        { name: 'Baptism & the Table', body: 'Baptism by immersion after belief; the Lord\u2019s Supper shared as a body.' },
+        { name: 'Missions', body: 'Every member sent \u2014 to our neighbors on Yale Avenue and to the nations.' },
+        { name: 'The Family', body: 'God\u2019s first institution, and the church\u2019s first place of discipleship.' }
+      ],
+
+      ministries: [
+        { title: 'MBC Preschool', ages: 'Birth \u2013 Pre-K', body: 'Secure, background-checked care with Bible teaching at a preschooler’s scale. Sundays and Wednesdays.', who: 'Michelle Davis', when: 'Sun 9:15 & 10:30', slot: 'preschool hall 3:2' },
+        { title: 'MBC Kids', ages: 'K \u2013 5th grade', body: 'Sunday classes, Wednesday clubs.', who: 'Lori Bell', when: 'Sun & Wed', slot: 'kids ministry 3:2' },
+        { title: 'MBC Students', ages: '6th \u2013 12th grade', body: 'Sunday mornings and Wednesday nights.', who: 'Andrew McGuire', when: 'Wed 6:00 PM', slot: 'students 3:2' },
+        { title: 'Senior Adults', ages: '55 and up', body: 'Monthly luncheons, day trips, and a class with fifty years of Bible study behind it.', who: 'Rickey Weatherford', when: 'Monthly', slot: 'senior adults 3:2' },
+        { title: 'Music & Worship', ages: 'All ages', body: ' Wednesday at 7:45.', who: 'Rickey Weatherford', when: 'Wed 7:45 PM', slot: 'choir 3:2' },
+        { title: 'Missions & Outreach', ages: 'All ages', body: 'Cooperative Program giving, two international partnerships, and monthly work in our own neighborhood.', who: 'Spencer Ray', when: 'Ongoing', slot: 'missions 3:2' }
+      ],
+
+      givingWays: [
+        { title: 'Online or recurring', body: 'Set a one-time or monthly gift from a bank account or card. Change or cancel it yourself in the Member Hub.' },
+        { title: 'In the service', body: 'Offering boxes placed around the sanctuary. Checks to “Memorial Baptist Church.”' },
+        { title: 'By mail or in the office', body: '2800 S. Yale Ave., Tulsa, OK 74114. The office is open Monday through Thursday, 9 to 4.' }
+      ],
+
+      stewardship: [
+        { stat: '81%', label: 'Of the budget goes to ministry and staff \u2014 the people who do the work.' },
+        { stat: '11%', label: 'Sent beyond our walls through the Cooperative Program and our own partners.' },
+        { stat: '8%', label: 'Building, utilities, and upkeep on a facility we share with the neighborhood.' },
+        { stat: 'Quarterly', label: 'A full financial report to the congregation at every member meeting.' }
+      ],
+
+      hubTeaser: ['Sermon notes & passage of the week', 'Your group and serve schedule', 'Reading plans and catechism', 'Prayer wall', 'Church calendar & RSVPs', 'Study library and directory'],
+
+      footerCols: [
+        { head: 'Visit', items: [footerNav("I'm New", 'visit'), footerNav('What to Expect', 'visit'), footerNav('Ministries', 'ministries'), footerNav('Connect', 'groups')] },
+        { head: 'About', items: [footerNav('Who We Are', 'about'), footerNav('Our Beliefs', 'about'), footerNav('Our Team', 'staff'), footerNav('Sermons', 'sermons')] },
+        { head: 'Members', items: [footerNav('Member Hub', 'hub'), footerNav('Giving', 'giving'), footerNav('Events', 'events'), footerNav('Prayer Wall', 'hub')] }
+      ]
+    };
+  }
+}
+</script>
+</body>
+</html>
