@@ -1,0 +1,14 @@
+{
+  "name": "Memorial Baptist Church",
+  "short_name": "Memorial",
+  "description": "A Baptist congregation in midtown Tulsa at 2800 S. Yale Ave.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#F8F3EB",
+  "theme_color": "#3A322B",
+  "icons": [
+    { "src": "assets/icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "assets/icon-512.png", "sizes": "512x512", "type": "image/png" },
+    { "src": "assets/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}

@@ -1,0 +1,45 @@
+[build]
+  publish = "."
+  command = ""
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "SAMEORIGIN"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+
+    # ── PRE-LAUNCH ONLY — delete this line to go live ──────────────────
+    # This site is still under review by church staff and its sermons,
+    # events, and bios are placeholders. Keep it out of search results
+    # until the real content lands and the custom domain is attached, so
+    # placeholder text never gets indexed under the church's name and
+    # never competes with memorialbaptist.com.
+    #
+    # A header (not a robots.txt Disallow) on purpose: crawlers must be
+    # able to FETCH the page to see the noindex. Blocking them in
+    # robots.txt would leave the URL indexable from inbound links with no
+    # way to read this instruction.
+    #
+    # Link previews are unaffected — Facebook, iMessage, and Slack ignore
+    # X-Robots-Tag, so sharing the link with staff still shows the card.
+    X-Robots-Tag = "noindex, nofollow"
+    # ──────────────────────────────────────────────────────────────────
+
+# Logos and generated icons are content-stable — cache them hard.
+[[headers]]
+  for = "/assets/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+# The bundles inline their own assets, so a stale HTML file is a stale site.
+[[headers]]
+  for = "/*.html"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"
+
+[[headers]]
+  for = "/site.webmanifest"
+  [headers.values]
+    Content-Type = "application/manifest+json"
+    Cache-Control = "public, max-age=86400"
