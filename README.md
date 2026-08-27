@@ -66,7 +66,8 @@ relative, which every real scraper resolves against the page URL.
 The site has a built-in editor so staff can change copy and photos without touching code.
 
 1. Scroll to the very bottom of any page and click **Admin sign in**.
-2. Passcode: `memorial2026`
+2. Enter the passcode. It is set in `source/Memorial Baptist Church.dc.html`
+   and in `index.html` — search for `adminErr` to find the check.
 3. An admin bar appears at the bottom. Choose a page, click **Edit page**, then:
    - click any text to rewrite it
    - click any photo (including the striped placeholders) to upload a replacement from your computer
@@ -74,7 +75,7 @@ The site has a built-in editor so staff can change copy and photos without touch
 
 **Important:** edits are stored in the browser they were made in — this is a static site with no database. To move a set of edits to another computer, or to make them permanent for all visitors, use **Export** in the admin bar to download `mbc-site-content.json`, then **Import** it on the target machine. Commit that JSON file here if you want a backup of the church's real copy.
 
-To change the passcode, open `source/Memorial Baptist Church.dc.html`, search for `memorial2026`, and replace both occurrences (the check and the on-screen hint). Then re-export per below. This is a convenience lock, not real security — anything typed into a static page can be read by a determined visitor.
+**The passcode is not security.** It sits in plain text inside a page anyone can view-source, and this repository is public — so treat it as a speed bump that stops accidental edits, nothing more. Deliberately not written in this README: a public README turns the speed bump into a lock with the key taped to the door. To change it, search both `index.html` and `source/Memorial Baptist Church.dc.html` for the current value and replace every occurrence (the check and the on-screen hint). Before this site holds anything that matters, either make the repository private or move editing behind a real login.
 
 ### Making edits permanent for everyone
 Two options:
@@ -108,11 +109,25 @@ The script draws a simplified mark — a solid house silhouette with the cross k
 
 ## Content still to replace
 
+Audited against memorialbaptist.com on 2026-08-27. Fabricated specifics have
+been removed; what remains is honestly placeholder and is labelled as such by
+the preview banner. What is still needed, and who has it:
+
+| Slot | Who has it |
+| --- | --- |
+| `allSermons[]` — 6–8 entries, and the current series name | Jacob / the stream archive |
+| `allEvents[]` — real dates for the next ~8 weeks | Sherri Kitchen (church calendar) |
+| `allGroups[]` — names, days, hosts, whether open | Spencer Ray |
+| Real budget percentages, if the Giving stats should carry numbers | Jocie Miser |
+| MBC Kids and MBC Students leaders | staff decision |
+| Guest parking and entrance; livestream platform and link | staff |
+| One true specific per staff bio, approved by each person | each staff member |
+
+
 - Sermon titles, dates, and series art are placeholders.
 - Event details and dates are placeholders.
 - Staff bios are short drafts.
 - Every striped panel is a photo slot awaiting real photography (foyer, congregation singing, pastor preaching, staff portraits at 4:5, ministry photos at 3:2, event images at 16:9).
-- There is no phone number anywhere on the site or in the structured data.
 
 ## Brand quick reference
 
