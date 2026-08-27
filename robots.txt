@@ -1,0 +1,8 @@
+# Memorial Baptist Church
+User-agent: *
+Allow: /
+
+# Internal reference — not for search results
+Disallow: /brand-guide.html
+
+# Sitemap: add once the site has a real domain and per-page URLs.
