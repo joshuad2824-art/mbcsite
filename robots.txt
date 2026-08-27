@@ -1,8 +1,14 @@
 # Memorial Baptist Church
+#
+# Crawling is allowed on purpose while the site is pre-launch: the
+# noindex lives in an X-Robots-Tag header set by netlify.toml, and a
+# crawler has to be able to fetch the page to see it. Disallowing here
+# would hide that instruction. See netlify.toml before changing this.
 User-agent: *
 Allow: /
 
 # Internal reference — not for search results
 Disallow: /brand-guide.html
 
-# Sitemap: add once the site has a real domain and per-page URLs.
+# At launch: remove the X-Robots-Tag line in netlify.toml and add a
+# Sitemap: line here once the custom domain is attached.

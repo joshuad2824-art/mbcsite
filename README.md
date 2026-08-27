@@ -31,7 +31,35 @@ The site goes live at a `*.netlify.app` address immediately; rename it under **S
 
 Before pointing the church's live domain at it, deploy to the `*.netlify.app` URL first and review every page there.
 
-> **Once the domain is settled**, add absolute `og:url` and `<link rel="canonical">` tags and a `Sitemap:` line in `robots.txt`. They are deliberately omitted right now — a canonical URL pointing at the wrong host is worse for search than none at all. The `og:image` paths are relative, which every real scraper resolves against the page URL.
+## Status: pre-launch
+
+The site is live at **https://mbctulsa.netlify.app** for staff review. It is
+deliberately **not indexable** yet — `netlify.toml` sets
+`X-Robots-Tag: noindex, nofollow` on every path.
+
+That is on purpose. The sermons, events, and staff bios are still
+placeholders, and letting Google index placeholder text under the church's
+name — competing with the current site at memorialbaptist.com — is a mess to
+undo later. Link previews still work, so sharing the URL with staff shows the
+proper card.
+
+### Launch checklist
+
+When the real content is in and the custom domain is ready:
+
+1. Delete the `X-Robots-Tag` line from `netlify.toml` (it is marked
+   `PRE-LAUNCH ONLY`).
+2. Attach the custom domain in Netlify and set it as the **primary domain**,
+   so the `*.netlify.app` address redirects to it instead of competing.
+3. Add absolute `og:url` and `<link rel="canonical">` tags pointing at the
+   real domain, in **both** heads of `index.html` (see "Editing the design"
+   below for why there are two) and in the `<helmet>` of the matching source.
+4. Add a `Sitemap:` line to `robots.txt`.
+5. Redirect or retire the old site so the two do not compete in search.
+
+Steps 3 and 4 are held until then on purpose: a canonical URL pointing at the
+wrong host is worse for search than no canonical at all. `og:image` stays
+relative, which every real scraper resolves against the page URL.
 
 ## Admin content editing
 
