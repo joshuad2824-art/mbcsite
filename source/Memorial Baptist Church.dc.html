@@ -40,6 +40,17 @@
 <div data-mbc-root="1" style="--accent:{{ accent }};--accent-alt:{{ accentAlt }};--ground:{{ ground }};--photo-r:{{ photoRadius }};background:var(--ground,#F8F3EB);min-height:100vh;color:#3A322B">
   <template id="__bundler_thumbnail"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect width="100" height="100" fill="#3A322B"/><g fill="none" stroke="#DBAE84" stroke-width="3" stroke-linecap="round"><path d="M50 30v40M40 44h20"/><path d="M32 70V52l18-14 18 14v18"/></g></svg></template>
 
+  <!-- ── PRE-LAUNCH REVIEW BANNER — delete this block to go live ──────────
+       Sermons, events, groups, and every photo are still placeholders.
+       This says so plainly so staff reviewing the site spend their
+       feedback on the design rather than on content we already know is
+       standing in. Remove together with the X-Robots-Tag in netlify.toml.
+  -->
+  <div style="background:#3A322B;color:#E4D9C8;padding:10px clamp(18px,4vw,56px);font:400 13px/1.5 Lato,sans-serif;text-align:center">
+    <strong style="font-weight:700;color:#DBAE84">Preview</strong>
+    &nbsp;·&nbsp; Sermons, events, groups, and photography are placeholders awaiting real content. Service times, address, and staff are current.
+  </div>
+
   <header data-mbc-chrome="1" style="position:sticky;top:0;z-index:50;background:rgba(248,243,235,.94);backdrop-filter:blur(12px);border-bottom:1px solid #E7DCC9">
     <div style="max-width:1320px;margin:0 auto;padding:0 clamp(18px,4vw,56px);min-height:96px;display:flex;align-items:center;gap:clamp(14px,3vw,44px)">
       <button onClick="{{ goHome }}" style="display:flex;align-items:center;gap:11px;background:none;border:none;padding:0;cursor:pointer;flex:none;margin-right:auto">
@@ -293,8 +304,8 @@
         <div>
           <p style="font:700 11px/1 Lato,sans-serif;letter-spacing:.2em;text-transform:uppercase;color:var(--accent,#A8613F);margin:0 0 18px">Our beliefs</p>
           <h2 style="font:400 clamp(28px,3vw,40px)/1.12 Lora,Georgia,serif;letter-spacing:-.02em;margin:0 0 20px">We hold the Baptist Faith &amp; Message.</h2>
-          <p style="font:400 17px/1.65 Lato,sans-serif;color:#6B6058;margin:0 0 24px;max-width:44ch">A Southern Baptist congregation, cooperating with churches across Oklahoma and the world. The full confession is available in the Member Hub library.</p>
-          <button onClick="{{ goHub }}" style="background:none;border:1px solid #CFC1AB;border-radius:999px;padding:14px 24px;cursor:pointer;font:700 12px/1 Lato,sans-serif;letter-spacing:.06em;color:#3A322B" style-hover="border-color:#3A322B;background:#F1E9DB">Read the full confession</button>
+          <p style="font:400 17px/1.65 Lato,sans-serif;color:#6B6058;margin:0 0 24px;max-width:44ch">A Southern Baptist congregation, cooperating with churches across Oklahoma and the world. The full text of the Baptist Faith &amp; Message 2000 is published by the SBC.</p>
+          <a href="https://bfm.sbc.net/bfm2000/" target="_blank" rel="noopener" style="display:inline-block;background:none;border:1px solid #CFC1AB;border-radius:999px;padding:14px 24px;cursor:pointer;font:700 12px/1 Lato,sans-serif;letter-spacing:.06em;color:#3A322B" style-hover="border-color:#3A322B;background:#F1E9DB">Read the full confession</a>
         </div>
         <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1px;background:#E4D8C4;border:1px solid #E4D8C4;border-radius:14px;overflow:hidden;align-content:start">
           <sc-for list="{{ beliefs }}" as="b" hint-placeholder-count="8">
@@ -1018,7 +1029,7 @@ class Component extends DCLogic {
     const staff = [
       { name: 'Jacob Bice', role: 'Pastor', bio: 'Preaches on Sunday mornings. Currently walking the church through the Gospel of Mark.' },
       { name: 'Spencer Ray', role: 'Associate Pastor', bio: 'Oversees groups, membership, and the next-steps pathway.' },
-      { name: 'Andrew McGuire', role: 'Campus Minister', bio: 'Works with students at the university and leads MBC Students.' },
+      { name: 'Andrew McGuire', role: 'Campus Minister', bio: 'Works with college students and keeps the building running for everyone else.' },
       { name: 'Rickey Weatherford', role: 'Music Minister', bio: 'Leads the congregation in singing and directs the choir.' },
       { name: 'Michelle Davis', role: 'Preschool Minister', bio: 'Runs the preschool halls and trains the Sunday volunteers.' },
       { name: 'Yonas Clarke', role: 'Church Host', bio: 'The first face most guests meet. Handles facilities and hospitality.' },
@@ -1038,10 +1049,10 @@ class Component extends DCLogic {
     const sermons = this.state.ser === 'All' ? allSermons : allSermons.filter(x => x.series === this.state.ser);
 
     const allEvents = [
-      { mon: 'Sep', day: '02', cat: 'Weekly', title: 'Wednesday Night Dinner & Bible Study', body: 'Dinner in the fellowship hall, then study by age group. Bring a friend; no sign-up needed.', when: '6:00 PM study · 7:00 PM dinner', where: 'Fellowship Hall', cta: 'Details' },
+      { mon: 'Sep', day: '02', cat: 'Weekly', title: 'Wednesday Night Bible Study & Dinner', body: 'Study by age group, then dinner in the fellowship hall. Bring a friend; no sign-up needed.', when: '6:00 PM study · 7:00 PM dinner', where: 'Fellowship Hall', cta: 'Details' },
       { mon: 'Sep', day: '06', cat: 'Worship', title: 'Lord\u2019s Supper & Baptism Sunday', body: 'We share the table together and celebrate three baptisms in the morning service.', when: '10:30 AM', where: 'Sanctuary', cta: 'Details' },
       { mon: 'Sep', day: '12', cat: 'Serve', title: 'Serve Tulsa Saturday', body: 'Yard work and light repair for neighbors on the streets around the church. Teams of four.', when: '8:00 AM \u2013 12:00 PM', where: 'Meet in north lot', cta: 'Sign up' },
-      { mon: 'Sep', day: '18', cat: 'Students', title: 'MBC Students Fall Retreat', body: 'Two nights at Falls Creek for 6th\u201312th grade. Cost covers lodging, meals, and transport.', when: 'Fri 4 PM \u2013 Sun 2 PM', where: 'Falls Creek', cta: 'Register' },
+      { mon: 'Sep', day: '17', cat: 'Students', title: 'MBC Students \u2014 Wednesday Night', body: 'Bible study at the youth houses for 7th\u201312th grade, while the adults meet at the church.', when: '6:00 PM', where: 'Youth Houses', cta: 'Details' },
       { mon: 'Sep', day: '22', cat: 'Senior Adults', title: 'Senior Adult Luncheon', body: 'Lunch, singing, and a short devotional from Rickey. Rides available on request.', when: '11:30 AM', where: 'Fellowship Hall', cta: 'RSVP' },
       { mon: 'Sep', day: '28', cat: 'Church Family', title: 'Quarterly Member Meeting', body: 'Budget report, ministry updates, and a vote on the 2027 missions commitment.', when: '6:00 PM', where: 'Sanctuary', cta: 'Agenda' }
     ];
@@ -1067,9 +1078,9 @@ class Component extends DCLogic {
       { kicker: 'Serve schedule', meta: '2 upcoming', title: 'You\u2019re on the rotation', rows: ['Sep 6 \u2014 Greeter, north doors', 'Sep 20 \u2014 MBC Kids, 2nd grade'], cta: 'Request a sub' },
       { kicker: 'Reading plan', meta: 'Day 214', title: 'Mark & the Psalms', rows: ['Today: Mark 11:1\u201333', 'Today: Psalm 118', '14-day streak'], cta: 'Mark complete' },
       { kicker: 'Calendar', meta: 'RSVPs', title: 'Coming up for you', rows: ['Sep 12 \u2014 Serve Tulsa Saturday \u2713', 'Sep 28 \u2014 Member Meeting', 'Sep 22 \u2014 Luncheon (not going)'], cta: 'Full calendar' },
-      { kicker: 'Prayer wall', meta: '6 new', title: 'Praying with the body', rows: ['The Alvarez family \u2014 surgery Thu', 'Thanksgiving: Ruth\u2019s clear scan', 'Our partners in East Asia'], cta: 'Add a request' },
+      { kicker: 'Prayer wall', meta: '6 new', title: 'Praying with the body', rows: ['A member recovering from surgery', 'A thanksgiving for answered prayer', 'Our partners in East Asia'], cta: 'Add a request' },
       { kicker: 'Library', meta: '38 items', title: 'Studies & guides', rows: ['New City Catechism \u2014 Q. 24', 'Family Worship: A Study Guide', '3 Circles Life Conversation Guide'], cta: 'Browse library' },
-      { kicker: 'Directory', meta: 'Opt-in', title: 'Find a church family', rows: ['412 households listed', 'Your entry: visible to members', 'Photo needed'], cta: 'Edit your entry' },
+      { kicker: 'Directory', meta: 'Opt-in', title: 'Find a church family', rows: ['Households who have opted in', 'Your entry: visible to members', 'Photo needed'], cta: 'Edit your entry' },
       { kicker: 'This week', meta: 'Sep 1', title: 'The weekly digest', rows: ['Baptism Sunday \u2014 three testimonies', 'Fall classes open Sep 14', 'Nursery volunteers needed'], cta: 'Read the digest' }
     ];
 
@@ -1159,7 +1170,6 @@ class Component extends DCLogic {
         { q: 'What kind of church is this?', a: 'A Southern Baptist congregation in midtown Tulsa, holding the Baptist Faith & Message (2000). Congregationally-led.' },
         { q: 'What is the music like?', a: 'Congregational singing led by the worship team — hymns and modern songs both, chosen to be sung by everyone rather than performed.' },
         { q: 'How long is the service?', a: 'About ninety minutes. Preaching runs thirty-five to forty minutes.' },
-        { q: '', a: '' },
         { q: 'How do I become a member?', a: 'Talk with the pastoral staff anytime and they guide you through it.' }
       ],
 
@@ -1168,6 +1178,7 @@ class Component extends DCLogic {
         { name: 'God', body: 'One God eternally existing as Father, Son, and Holy Spirit.' },
         { name: 'Man', body: 'Made in God\u2019s image, fallen in sin, and precious to Him from conception.' },
         { name: 'Salvation', body: 'By grace alone, through faith alone, in Christ alone \u2014 never by our works.' },
+        { name: 'God\u2019s Purpose of Grace', body: 'Election is the gracious purpose of God by which He regenerates, justifies, sanctifies, and glorifies sinners. It excludes boasting and promotes humility.' },
         { name: 'The Church', body: 'A local body of baptized believers, governed by its members under Christ.' },
         { name: 'Baptism & the Table', body: 'Baptism by immersion after belief; the Lord\u2019s Supper shared as a body.' },
         { name: 'Missions', body: 'Every member sent \u2014 to our neighbors on Yale Avenue and to the nations.' },
@@ -1176,11 +1187,11 @@ class Component extends DCLogic {
 
       ministries: [
         { title: 'MBC Preschool', ages: 'Birth \u2013 Pre-K', body: 'Secure, background-checked care with Bible teaching at a preschooler’s scale. Sundays and Wednesdays.', who: 'Michelle Davis', when: 'Sun 9:15 & 10:30', slot: 'preschool hall 3:2' },
-        { title: 'MBC Kids', ages: 'K \u2013 5th grade', body: 'Sunday classes, Wednesday clubs.', who: 'Lori Bell', when: 'Sun & Wed', slot: 'kids ministry 3:2' },
-        { title: 'MBC Students', ages: '6th \u2013 12th grade', body: 'Sunday mornings and Wednesday nights.', who: 'Andrew McGuire', when: 'Wed 6:00 PM', slot: 'students 3:2' },
+        { title: 'MBC Kids', ages: 'K \u2013 5th grade', body: 'Sunday classes and Wednesday clubs, taught by adults who know the kids\u2019 names. Real Bible, at their scale, and something to talk about on the way home.', who: '', when: 'Sun & Wed', slot: 'kids ministry 3:2' },
+        { title: 'MBC Students', ages: '7th \u2013 12th grade', body: 'Bible study upstairs on Sunday mornings, worship with the whole church at 10:30, and midweek at the youth houses. Students carry a real share of the Wednesday night \u2014 welcome, prayer, and the gospel presentation.', who: '', when: 'Sun 9:15 \u00b7 Wed 6:00 PM', slot: 'students 3:2' },
         { title: 'Senior Adults', ages: '55 and up', body: 'Monthly luncheons, day trips, and a class with fifty years of Bible study behind it.', who: 'Rickey Weatherford', when: 'Monthly', slot: 'senior adults 3:2' },
-        { title: 'Music & Worship', ages: 'All ages', body: ' Wednesday at 7:45.', who: 'Rickey Weatherford', when: 'Wed 7:45 PM', slot: 'choir 3:2' },
-        { title: 'Missions & Outreach', ages: 'All ages', body: 'Cooperative Program giving, two international partnerships, and monthly work in our own neighborhood.', who: 'Spencer Ray', when: 'Ongoing', slot: 'missions 3:2' }
+        { title: 'Music & Worship', ages: 'All ages', body: 'Choir rehearses Wednesday nights after dinner. Sunday singing draws on hymns and modern songs both, chosen so the room can actually sing them.', who: 'Rickey Weatherford', when: 'Wed 7:45 PM', slot: 'choir 3:2' },
+        { title: 'Missions & Outreach', ages: 'All ages', body: 'We give through the Cooperative Program and support partners at home and abroad.', who: 'Spencer Ray', when: 'Ongoing', slot: 'missions 3:2' }
       ],
 
       givingWays: [
@@ -1190,9 +1201,9 @@ class Component extends DCLogic {
       ],
 
       stewardship: [
-        { stat: '81%', label: 'Of the budget goes to ministry and staff \u2014 the people who do the work.' },
-        { stat: '11%', label: 'Sent beyond our walls through the Cooperative Program and our own partners.' },
-        { stat: '8%', label: 'Building, utilities, and upkeep on a facility we share with the neighborhood.' },
+        { stat: 'Voted', label: 'The budget is presented to the members and voted on by them \u2014 not set behind closed doors.' },
+        { stat: 'Monthly', label: 'A portion goes out the door through the Cooperative Program and our own mission partners.' },
+        { stat: 'Open', label: 'Want the detail behind any line of it? Ask. It isn\u2019t hidden.' },
         { stat: 'Quarterly', label: 'A full financial report to the congregation at every member meeting.' }
       ],
 
